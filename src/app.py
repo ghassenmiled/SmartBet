@@ -50,5 +50,6 @@ def bet():
     return render_template('result.html', website=website, model=model, max_odds=max_odds, 
                            desired_profit=desired_profit, odds=odds, bet_prediction=bet_prediction)
     
+    
 if __name__ == '__main__':
     app.run(debug=True)
