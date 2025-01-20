@@ -5,7 +5,7 @@ import logging
 
 def get_gambling_odds(website):
     """
-    Fetch gambling odds from the Bet365 API or other websites based on the 'website' parameter.
+    Fetch gambling odds from the specified website's API.
 
     Args:
         website (str): The website name for which to fetch odds.
@@ -13,23 +13,33 @@ def get_gambling_odds(website):
     Returns:
         list: A list of dictionaries containing odds information, or None if an error occurs.
     """
-    # You could modify this logic to handle different websites based on the `website` argument.
-    # For now, this example keeps using the Bet365 API for demonstration purposes.
     api_key = os.getenv('API_KEY')
     if not api_key:
         logging.error("API key is missing. Please set the 'API_KEY' environment variable.")
         return None
 
-    # Configure the HTTPS connection
-    conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
-    headers = {
-        'x-rapidapi-key': api_key,
-        'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
-    }
+    # Configure connection and headers based on the website
+    if website == "bet365":
+        conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
+        headers = {
+            'x-rapidapi-key': api_key,
+            'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
+        }
+        endpoint = "/bet365/get_betfair_forks"
+    elif website == "other_website":  # Example for another website
+        conn = http.client.HTTPSConnection("other-website-api.com")
+        headers = {
+            'x-rapidapi-key': api_key,
+            'x-rapidapi-host': "other-website-api.com"
+        }
+        endpoint = "/other_website/get_odds"
+    else:
+        logging.error(f"Unsupported website: {website}")
+        return None
 
     try:
-        # Make the API request (you can customize this based on the `website`)
-        conn.request("GET", "/bet365/get_betfair_forks", headers=headers)
+        # Make the API request
+        conn.request("GET", endpoint, headers=headers)
         res = conn.getresponse()
         data = res.read()
 
