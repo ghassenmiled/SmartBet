@@ -41,6 +41,11 @@ def bet():
         logging.error(f"Failed to fetch odds for website: {website}")
         return render_template('error.html', message="Failed to fetch odds for the selected website.")
     
+    # Logging fetched odds for debugging purposes
+    logging.debug("Gambling odds fetched successfully!")
+    for odd in odds:
+        logging.debug(odd)
+
     # Predict the bet outcome using the predict_bet function
     bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
 
@@ -49,7 +54,6 @@ def bet():
     # Return the result to the user
     return render_template('result.html', website=website, model=model, max_odds=max_odds, 
                            desired_profit=desired_profit, odds=odds, bet_prediction=bet_prediction)
-    
-    
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,3 +1,8 @@
+import os
+import http.client
+import json
+import logging
+
 def get_gambling_odds(website):
     """
     Fetch gambling odds from the Bet365 API or other websites based on the 'website' parameter.
