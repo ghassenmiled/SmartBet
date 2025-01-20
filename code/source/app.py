@@ -25,22 +25,26 @@ def get_sports_data():
 
 # Function to fetch gambling odds from a new API
 def get_gambling_odds(website):
-    api_key = os.getenv('SPORTS_API_KEY')
-    url = 'https://api.sportsgamesodds.com/v1/odds'
-    headers = {'X-Api-Key': api_key}
-    params = {
-        'oddsAvailable': 'true',
-        'limit': 10,  # Adjust as needed
-        'markets': 'moneyline',  # Example market type
-        'sport': 'nfl'  # Example sport type
+    #api_key = os.getenv('RAPIDAPI_KEY')  # Your RapidAPI key
+    url = 'https://bet365-api-inplay.p.rapidapi.com/bet365/get_betfair_forks'
+    headers = {
+        'x-rapidapi-host': 'bet365-api-inplay.p.rapidapi.com',
+        'x-rapidapi-key': '33a834c215msha6e80ead5dea978p1a94d9jsn2668968f780'
     }
     try:
-        response = requests.get(url, headers=headers, params=params)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
-        return data['odds']
+
+        # Check for valid data
+        if 'data' in data:
+            return data['data']
+        else:
+            logging.error(f"No odds data found for website: {website}")
+            return None
+
     except requests.exceptions.RequestException as e:
-        logging.error(f"Error fetching sports data: {e}")
+        logging.error(f"Error fetching gambling odds: {e}")
         return None
 
 @app.route('/')
