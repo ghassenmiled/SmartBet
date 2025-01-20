@@ -73,31 +73,5 @@ To get started with **Bet Builder**, follow these steps:
    ./src/scripts/prerequisites.sh
    ./src/scripts/setup.sh
    
- http://localhost:5000/
-
- 
-├── Dockerfile
-├── README.md 
-├── data
-├── requirements.txt  
-├── src
-│   ├── api
-│   │   └── odds_pi.py
-│   ├── app.py        
-│   ├── prediction
-│   │   ├── prediction.py        
-│   │   └── train_model.py       
-│   ├── preprocessing
-│   │   └── data_preprocessing.py
-│   ├── scripts
-│   │   ├── prerequisites.sh     
-│   │   ├── reset.sh
-│   │   └── setup.sh
-│   ├── templates
-│   │   ├── error.html
-│   │   ├── index.html
-│   │   └── result.html
-│   └── utils
-└── utils
-    └── model_utils.py
+-> http://localhost:5000/
 
