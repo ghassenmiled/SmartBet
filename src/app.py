@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import logging
 from src.api.odds_pi import get_gambling_odds
-from src.prediction import predict_bet
+from src.prediction.prediction import predict_bet
 from src.preprocessing.data_preprocessing import preprocess_data
 
 # Set up logging for verbose debugging
