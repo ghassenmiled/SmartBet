@@ -12,9 +12,15 @@ def home():
 
 @app.route('/bet', methods=['POST'])
 def bet():
+    # Dynamically import modules to avoid circular import issues
+    from models.data_preprocessing import get_real_world_data
+    from models.betting_model import predict_bet_outcome
+    from user_behavior.user_tracking import get_user_preferences, save_user_bet
+    from utils.odds_calculator import calculate_odds
+
     # Retrieve form data
     website = request.form.get('website')  # Gambling website
-    model = request.form.get('model')  # Chosen model for prediction
+    models = request.form.getlist('model')  # List of selected models
     max_odds = float(request.form.get('max_odds', 2.0))  # Default to 2.0 if not provided
     bet_amount = float(request.form.get('bet_amount', 10.0))  # Default to 10 if not provided
     desired_profit = float(request.form.get('desired_profit', 100.0))  # Default to 100 if not provided
@@ -35,11 +41,13 @@ def bet():
     team_b_stats = real_world_data['team_b']
     team_a_odds, team_b_odds = calculate_odds(team_a_stats, team_b_stats)
     
-    # Predict betting outcomes based on selected model
-    predictions = predict_bet_outcome(real_world_data, model)  # Removed num_models
+    # Predict betting outcomes based on selected models
+    predictions = {}
+    for model in models:
+        predictions[model] = predict_bet_outcome(real_world_data, model, 1)  # Assuming num_models=1 for simplicity
     
     # Save the user's bet (even though user_id is unique, you can adjust if a persistent session is needed)
-    save_user_bet(user_id, website, model, bet_amount, predictions)
+    save_user_bet(user_id, website, models, bet_amount, predictions)
     
     # Retrieve user preferences
     user_preferences = get_user_preferences(user_id)
