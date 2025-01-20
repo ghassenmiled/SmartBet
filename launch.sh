@@ -13,12 +13,12 @@ cd "$APP_DIR" || { echo "Failed to navigate to the app directory"; exit 1; }
 # Step 2: Stop and remove the existing container if it exists
 echo "Checking for existing container..."
 if docker ps -a --format '{{.Names}}' | grep -q "bet-app"; then
-    echo "Stopping existing container..."
-    docker stop bet-app || { echo "Failed to stop existing container"; exit 1; }
-    echo "Removing existing container..."
-    docker rm bet-app || { echo "Failed to remove existing container"; exit 1; }
+  echo "Stopping existing container..."
+  docker stop bet-app || { echo "Failed to stop existing container"; exit 1; }
+  echo "Removing existing container..."
+  docker rm bet-app || { echo "Failed to remove existing container"; exit 1; }
 else
-    echo "No existing container found. Proceeding..."
+  echo "No existing container found. Proceeding..."
 fi
 
 # Step 3: Build the container image using docker
@@ -28,22 +28,3 @@ docker build --network=host -t my-bet-app . || { echo "Container image build fai
 # Step 4: Run the container using docker
 echo "Running container with docker..."
 docker run --network=host -d -p 5000:5000 --name bet-app my-bet-app || { echo "Failed to run container"; exit 1; }
-
-# Step 5: Check if the container is running successfully
-echo "Checking container status..."
-docker inspect -f '{{.State.Running}}' bet-app | grep "true" >/dev/null
-if [ $? -eq 0 ]; then
-    echo "Container is running successfully."
-    # Output container logs
-    echo "Outputting logs..."
-    docker logs -f bet-app
-else
-    echo "Container is not running."
-    exit 1
-fi
-
-# Final success message
-echo "Container launched successfully and running."
-
-# Exit the script successfully
-exit 0
