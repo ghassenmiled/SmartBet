@@ -1,5 +1,6 @@
 # Ignore virtual environments
 scripts/venv/
+venv/
 
 # Ignore Python bytecode files
 __pycache__/

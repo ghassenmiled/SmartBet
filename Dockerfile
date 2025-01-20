@@ -8,7 +8,8 @@ WORKDIR /app
 COPY requirements.txt /app/
 COPY setup.sh /app/scripts/setup.sh
 COPY reset.sh /app/scripts/reset.sh
-COPY ../src /app/src/
+COPY ../../src /app/src/
+COPY ../../data /app/data/
 
 # Install system dependencies and Python
 RUN apt-get update && apt-get install -y \
