@@ -60,23 +60,17 @@ def index():
 
 @app.route('/bet', methods=['POST'])
 def bet():
-    # from code.source.models.data.data_preprocessing import get_real_world_data
-    # from code.source.models.bet.betting_model import predict_bet_outcome
-    # from user_behavior.user_tracking import get_user_preferences, save_user_bet
-    # from utils.odds_calculator import calculate_odds
-
     website = request.form.get('website')
-    # models = request.form.getlist('model')
-    # max_odds = request.form.get('max_odds', type=float)
-    # bet_amount = request.form.get('bet_amount', type=float)
-    # desired_profit = request.form.get('desired_profit', type=float)
+    model = request.form.get('model')
+    max_odds = request.form.get('max_odds', type=float)
+    desired_profit = request.form.get('desired_profit', type=float)
 
-    logging.debug(f"Received form data: Website={website}")
+    logging.debug(f"Received form data: Website={website}, Model={model}, Max Odds={max_odds}, Desired Profit={desired_profit}")
 
     if not website:
         logging.error("Website is missing")
         return render_template('error.html', message="Website is required.")
-
+    
     odds = get_gambling_odds(website)
     if odds is None:
         logging.error(f"Failed to fetch odds for website: {website}")
@@ -84,15 +78,8 @@ def bet():
     
     logging.debug(f"Fetched odds: {odds}")
 
-    # Commenting out other parts for now
-    # predicted_outcome = "Win" if random.choice([True, False]) else "Lose"
-    # logging.debug(f"Predicted outcome: {predicted_outcome}")
+    return render_template('result.html', website=website, model=model, max_odds=max_odds, desired_profit=desired_profit, odds=odds)
 
-    # user_id = str(uuid.uuid4())
-    # save_user_bet(user_id, models, bet_amount, predicted_outcome)
-
-    # dynamic_odds = calculate_odds(odds, models)
-    # logging.debug(f"Calculated dynamic odds: {dynamic_odds}")
 
     return render_template('result.html', odds=odds)
 
