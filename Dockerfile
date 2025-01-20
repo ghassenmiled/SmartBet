@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install the dependencies from requirements.txt
+# Set up the virtual environment and install the dependencies from requirements.txt
 RUN python3 -m venv /app/venv \
     && /app/venv/bin/pip install --upgrade pip \
     && /app/venv/bin/pip install -r /app/requirements.txt
@@ -27,7 +27,7 @@ RUN python3 -m venv /app/venv \
 # Set the environment variable to point to the virtual environment
 ENV PATH="/app/venv/bin:$PATH"
 
-# Expose the application port
+# Expose the application port (default Flask port)
 EXPOSE 5000
 
 # Run the app.py file when the container starts
