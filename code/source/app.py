@@ -30,10 +30,10 @@ def bet():
         return render_template('error.html', message="All fields are required.")
 
     if bet_amount <= 0:
-        return render_template('error.html', message="Bet Amount must be positive in euros.")
+        return render_template('error.html', message="Bet Amount must be in euros.")
     
     if max_odds <= 0:
-        return render_template('error.html', message="Max Odds must be a positive value.")
+        return render_template('error.html', message="Max Odds must be a value.")
     
     if not (1 <= desired_profit <= 1000):
         return render_template('error.html', message="Desired Profit should be between 1% and 1000%.")

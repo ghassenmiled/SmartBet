@@ -73,10 +73,10 @@
             <option value="model_3">Model C</option>
         </select><br>
         
-        <label for="max_odds">Max Odds (positive value):</label>
+        <label for="max_odds">Max Odds :</label>
         <input type="number" id="max_odds" name="max_odds" step="0.01" min="0.01" required><br>
         
-        <label for="bet_amount">Bet Amount (€ - Positive):</label>
+        <label for="bet_amount">Bet Amount (€):</label>
         <input type="number" id="bet_amount" name="bet_amount" step="0.01" min="0.01" required><br>
         
         <label for="desired_profit">Desired Profit (1% to 1000%):</label>
@@ -99,10 +99,10 @@
             const desiredProfit = parseFloat(document.getElementById('desired_profit').value);
 
             if (betAmount <= 0) {
-                errorMessage += 'Bet Amount should be positive in euros.\n';
+                errorMessage += 'Bet Amount should be in euros.\n';
             }
             if (maxOdds <= 0) {
-                errorMessage += 'Max Odds should be a positive value.\n';
+                errorMessage += 'Max Odds.\n';
             }
             if (desiredProfit < 1 || desiredProfit > 1000) {
                 errorMessage += 'Desired Profit should be between 1% and 1000%.\n';
