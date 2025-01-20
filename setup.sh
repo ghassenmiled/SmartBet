@@ -84,7 +84,7 @@ build_and_run_app() {
 
     # Step 4: Run the container using docker with the API key as an environment variable
     echo "Running container with docker..."
-    docker run --network=host -d -p 5000:5000 --name bet-app -e SPORTS_API_KEY="$SPORTS_API_KEY" my-bet-app || { echo "Failed to run container"; exit 1; }
+    docker run --network=host -d -p 5000:5000 --name bet-app -e API_KEY="$API_KEY" my-bet-app || { echo "Failed to run container"; exit 1; }
 }
 
 # Main script execution
