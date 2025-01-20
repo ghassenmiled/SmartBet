@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import logging
 from src.api.odds_pi import get_gambling_odds
-from src.prediction.prediction import predict_bet
+from src.prediction import predict_bet
 from src.preprocessing.data_preprocessing import preprocess_data
 
 # Set up logging for verbose debugging
@@ -22,6 +22,7 @@ def bet():
 
     logging.debug(f"Received form data: Website={website}, Model={model}, Max Odds={max_odds}, Desired Profit={desired_profit}")
 
+    # Input validation
     if not website:
         logging.error("Website is missing")
         return render_template('error.html', message="Website is required.")
@@ -40,16 +41,14 @@ def bet():
         logging.error(f"Failed to fetch odds for website: {website}")
         return render_template('error.html', message="Failed to fetch odds for the selected website.")
     
-    # Preprocess the data (if needed)
-    processed_data = preprocess_data(odds)
-
-    # Use the model to predict the bet outcome
-    bet_prediction = predict_bet(processed_data, model)
+    # Predict the bet outcome using the predict_bet function
+    bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
 
     logging.debug(f"Bet Prediction: {bet_prediction}")
 
+    # Return the result to the user
     return render_template('result.html', website=website, model=model, max_odds=max_odds, 
                            desired_profit=desired_profit, odds=odds, bet_prediction=bet_prediction)
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
