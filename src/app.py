@@ -36,7 +36,7 @@ def bet():
         return render_template('error.html', message="Desired Profit should be a positive number.")
 
     # Fetch gambling odds from the website
-    odds = get_gambling_odds(website)
+    odds = get_gambling_odds("bet365")
     if odds is None:
         logging.error(f"Failed to fetch odds for website: {website}")
         return render_template('error.html', message="Failed to fetch odds for the selected website.")
