@@ -23,11 +23,10 @@
         }
         label {
             font-weight: bold;
-            margin-top: 10px;
         }
-        select, input[type="number"], input[type="text"], button {
+        select, input[type="number"], button {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -37,21 +36,16 @@
             color: white;
             border: none;
             cursor: pointer;
-            padding: 12px;
         }
         button:hover {
             background-color: #45a049;
         }
         .info {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         .info h3 {
             color: #333;
-        }
-        .info p {
-            font-size: 1.2em;
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -68,21 +62,20 @@
         </select><br>
 
         <label for="model">Model:</label>
-        <input type="text" id="model" name="model" placeholder="Enter prediction model" required><br>
-        
-        <label for="num_models">Number of Models:</label>
-        <input type="number" id="num_models" name="num_models" placeholder="Enter number of models" required><br>
+        <input type="text" id="model" name="model" required><br>
         
         <label for="max_odds">Max Odds:</label>
-        <input type="number" id="max_odds" name="max_odds" step="0.01" placeholder="Max odds for betting" required><br>
+        <input type="number" id="max_odds" name="max_odds" step="0.01" required><br>
         
         <label for="bet_amount">Bet Amount:</label>
-        <input type="number" id="bet_amount" name="bet_amount" step="0.01" placeholder="Amount to bet" required><br>
+        <input type="number" id="bet_amount" name="bet_amount" step="0.01" required><br>
         
         <label for="desired_profit">Desired Profit:</label>
-        <input type="number" id="desired_profit" name="desired_profit" step="0.01" placeholder="Desired profit from the bet" required><br>
+        <input type="number" id="desired_profit" name="desired_profit" step="0.01" required><br>
         
-        <button type="submit">Submit Bet</button>
+        <!-- user_id is handled in the backend, not exposed here -->
+        
+        <button type="submit">Submit</button>
     </form>
 
     <!-- Info about real-world odds (displayed after user selects teams and submits) -->
