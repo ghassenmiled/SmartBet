@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import uuid  # for generating unique user IDs
+import random
 import requests  # to fetch odds from the API
 import logging
 
