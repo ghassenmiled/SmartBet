@@ -6,11 +6,9 @@ WORKDIR /app
 
 # Copy the necessary files into the container
 COPY requirements.txt /app/
-COPY scripts/setup.sh /app/scripts/setup.sh
-COPY scripts/reset.sh /app/scripts/reset.sh
-COPY src /app/src/
-
-
+COPY setup.sh /app/scripts/setup.sh
+COPY reset.sh /app/scripts/reset.sh
+COPY ../src /app/src/
 
 # Install system dependencies and Python
 RUN apt-get update && apt-get install -y \

@@ -8,6 +8,19 @@ command_exists() {
     command -v "$1" &>/dev/null
 }
 
+# Function to prompt for the API key if not set
+get_api_key() {
+    echo "Please enter your Sports API key:"
+    read -r API_KEY
+    if [ -z "$API_KEY" ]; then
+        echo "API key cannot be empty. Please try again."
+        get_api_key
+    else
+        export API_KEY
+        echo "API key set successfully."
+    fi
+}
+
 # Check if Node.js and npm are installed, and install if missing
 echo "Step 1: Checking for Node.js and npm..."
 if ! command_exists nodejs || ! command_exists npm; then
@@ -74,29 +87,16 @@ pip install --upgrade flask==2.2.2 werkzeug==2.2.2 scikit-learn pandas numpy || 
 echo "Step 7: Checking if the API_KEY environment variable is set..."
 if [ -z "$API_KEY" ]; then
     echo "Warning: API_KEY environment variable is not set. Please set it before running the app."
-    
-    # Prompt for API key if not set
-    get_api_key
 else
     echo "API_KEY environment variable is set."
 fi
 
-# Step 8: Request and set the API key if not set
-get_api_key() {
-    echo "Please enter your Sports API key:"
-    read -r API_KEY
-    if [ -z "$API_KEY" ]; then
-        echo "API key cannot be empty. Please try again."
-        get_api_key
-    else
-        export API_KEY
-        echo "API key set successfully."
-    fi
-}
+# Request and set the API key if not set
+get_api_key
 
-# Step 9: Check if Docker or Podman is installed
+# Step 8: Check if Docker or Podman is installed
 check_container_tools() {
-    echo "Step 9: Checking if Docker or Podman is installed..."
+    echo "Step 8: Checking if Docker or Podman is installed..."
     if ! command_exists docker && ! command_exists podman; then
         echo "Error: Neither Docker nor Podman is installed. Please install one before proceeding."
         exit 1
@@ -105,7 +105,7 @@ check_container_tools() {
 
 check_container_tools
 
-# Step 10: Determine which container tool is available
+# Step 9: Determine which container tool is available
 if command_exists docker; then
     CONTAINER_TOOL="docker"
 elif command_exists podman; then
@@ -117,7 +117,7 @@ fi
 
 # Functions to manage containers and images
 stop_containers() {
-    echo "Step 11: Stopping all running containers..."
+    echo "Step 10: Stopping all running containers..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
         docker ps -q | xargs -r docker stop
     elif [ "$CONTAINER_TOOL" = "podman" ]; then
@@ -126,7 +126,7 @@ stop_containers() {
 }
 
 remove_containers() {
-    echo "Step 12: Removing all containers..."
+    echo "Step 11: Removing all containers..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
         docker ps -a -q | xargs -r docker rm
     elif [ "$CONTAINER_TOOL" = "podman" ]; then
@@ -135,36 +135,36 @@ remove_containers() {
 }
 
 remove_docker_images() {
-    echo "Step 13: Removing all Docker images except Ubuntu images..."
+    echo "Step 12: Removing all Docker images except Ubuntu images..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
         docker images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r docker rmi -f || echo "No Docker images to remove"
     fi
 }
 
 remove_podman_images() {
-    echo "Step 14: Removing all Podman images except Ubuntu images..."
+    echo "Step 13: Removing all Podman images except Ubuntu images..."
     if [ "$CONTAINER_TOOL" = "podman" ]; then
         podman images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r podman rmi -f || echo "No Podman images to remove"
     fi
 }
 
 remove_docker_volumes() {
-    echo "Step 15: Cleaning up unused Docker volumes..."
+    echo "Step 14: Cleaning up unused Docker volumes..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
         docker volume prune -f || echo "No unused Docker volumes to remove"
     fi
 }
 
 remove_docker_networks() {
-    echo "Step 16: Cleaning up unused Docker networks..."
+    echo "Step 15: Cleaning up unused Docker networks..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
         docker network prune -f || echo "No unused Docker networks to remove"
     fi
 }
 
-# Step 17: Build and run the app container
+# Step 16: Build and run the app container
 build_and_run_app() {
-    echo "Step 17: Building and running the app container..."
+    echo "Step 16: Building and running the app container..."
 
     APP_DIR=$(pwd)
 
