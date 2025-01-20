@@ -1,0 +1,46 @@
+# Ignore virtual environments
+scripts/venv/
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore environment variables file
+.env
+
+# Ignore Docker-related files
+*.log
+*.bak
+docker-compose.yml
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE or editor settings (e.g., VS Code, JetBrains)
+.vscode/
+.idea/
+
+# Ignore Python dependencies installed by the system
+*.egg
+*.egg-info
+dist/
+build/
+
+# Ignore PyInstaller build files
+*.spec
+
+# Ignore Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Ignore coverage reports
+coverage.xml
+*.coveragerc
+*.tox
+*.nox
+*.coverage
+*.hypothesis
+
+# Ignore test output files
+*.log
