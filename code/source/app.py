@@ -1,14 +1,28 @@
 from flask import Flask, render_template, request
 import uuid  # for generating unique user IDs
+import requests  # to fetch odds from the API
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Set a secret key for session management
 
-@app.route('/')
-def home():
-    # List of gambling websites
-    gambling_sites = ["Site A", "Site B", "Site C"]
-    return render_template('index.html', gambling_sites=gambling_sites)
+# Function to fetch gambling odds from an API (e.g., OddsAPI)
+def get_gambling_odds(website):
+    api_key = 'your_api_key'  # Replace with your actual API key
+    url = f'https://api.oddsapi.io/v1/odds?apiKey={api_key}&sport=soccer'
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Check if request was successful
+        data = response.json()
+        
+        # Example logic for selecting odds based on gambling site
+        if website == 'Site A':
+            return data['data']['Site A']  # Modify based on actual response structure
+        elif website == 'Site B':
+            return data['data']['Site B']
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching gambling odds: {e}")
+        return None
 
 @app.route('/bet', methods=['POST'])
 def bet():
@@ -30,53 +44,10 @@ def bet():
         return render_template('error.html', message="All fields are required.")
 
     if bet_amount <= 0:
-        return render_template('error.html', message="Bet Amount must be in euros.")
+        return render_template('error.html', message="Bet Amount must be positive and in euros.")
     
     if max_odds <= 0:
-        return render_template('error.html', message="Max Odds must be a value.")
+        return render_template('error.html', message="Max Odds must be a positive value.")
     
     if not (1 <= desired_profit <= 1000):
         return render_template('error.html', message="Desired Profit should be between 1% and 1000%.")
-
-    season = request.form.get('season', '2025')  # Default to 2025 if not provided
-
-    # Generate or retrieve the user ID (UUID for uniqueness)
-    user_id = str(uuid.uuid4())
-    
-    # Fetch real-world data (e.g., match statistics) based on the season
-    real_world_data = get_real_world_data(season)
-    
-    # Ensure real-world data was fetched successfully
-    if real_world_data is None:
-        return render_template('error.html', message="Failed to fetch real-world data")
-
-    # Get team stats and calculate odds
-    team_a_stats = real_world_data['team_a']
-    team_b_stats = real_world_data['team_b']
-    team_a_odds, team_b_odds = calculate_odds(team_a_stats, team_b_stats)
-    
-    # Predict betting outcomes based on selected models
-    predictions = {}
-    for model in models:
-        predictions[model] = predict_bet_outcome(real_world_data, model, 1)  # Assuming num_models=1 for simplicity
-    
-    # Save the user's bet (even though user_id is unique, you can adjust if a persistent session is needed)
-    save_user_bet(user_id, website, models, bet_amount, predictions)
-    
-    # Retrieve user preferences
-    user_preferences = get_user_preferences(user_id)
-    
-    # Return the results to the user
-    return render_template(
-        'result.html', 
-        models=predictions, 
-        preferences=user_preferences, 
-        website=website, 
-        team_a_odds=team_a_odds, 
-        team_b_odds=team_b_odds,
-        bet_amount=bet_amount,
-        desired_profit=desired_profit
-    )
-
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
