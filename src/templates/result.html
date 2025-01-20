@@ -65,33 +65,21 @@
     <table>
         <thead>
             <tr>
-                <th>Event Name</th>
-                <th>Bookmaker 1</th>
-                <th>Bet Name 1</th>
-                <th>Bet Coefficient 1</th>
-                <th>Bookmaker 2</th>
-                <th>Bet Name 2</th>
-                <th>Bet Coefficient 2</th>
+                <th>Event</th>
+                <th>Bet</th>
+                <th>Odds</th>
+                <th>Prediction</th>
             </tr>
         </thead>
         <tbody>
-            {% if odds %}
-                {% for event in odds %}
-                <tr>
-                    <td>{{ event.event_name }}</td>
-                    <td>{{ event.bookmaker1 }}</td>
-                    <td>{{ event.bet_name1 }}</td>
-                    <td>{{ event.bet_coef1 }}</td>
-                    <td>{{ event.bookmaker2 }}</td>
-                    <td>{{ event.bet_name2 }}</td>
-                    <td>{{ event.bet_coef2 }}</td>
-                </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="7">No betting opportunities found. Please try different inputs.</td>
-                </tr>
-            {% endif %}
+            {% for odd in odds %}
+            <tr>
+                <td>{{ odd['event_name'] }}</td>
+                <td>{{ odd['bet_name1'] }} / {{ odd['bet_name2'] }}</td>
+                <td>{{ odd['bet_coef1'] }} / {{ odd['bet_coef2'] }}</td>
+                <td>{{ bet_prediction }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>
