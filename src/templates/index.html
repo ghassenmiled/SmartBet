@@ -28,7 +28,7 @@
             display: block;
             margin-top: 15px;
         }
-        input[type="number"], select, button {
+        input[type="number"], input[type="text"], select, button {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -84,6 +84,13 @@
 <body>
     <h1>Welcome to the Gambling Game</h1>
     <form action="/bet" method="POST" id="betForm">
+        <label for="website">Website:
+            <span class="tooltip">?
+                <span class="tooltip-text">Enter the website from which the gambling odds will be fetched.</span>
+            </span>
+        </label>
+        <input type="text" id="website" name="website" required>
+
         <label for="model">Model:
             <span class="tooltip">?
                 <span class="tooltip-text">Select the AI model for predictions.</span>
