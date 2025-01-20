@@ -21,9 +21,23 @@ def bet():
     # Retrieve form data
     website = request.form.get('website')  # Gambling website
     models = request.form.getlist('model')  # List of selected models
-    max_odds = float(request.form.get('max_odds', 2.0))  # Default to 2.0 if not provided
-    bet_amount = float(request.form.get('bet_amount', 10.0))  # Default to 10 if not provided
-    desired_profit = float(request.form.get('desired_profit', 100.0))  # Default to 100 if not provided
+    max_odds = request.form.get('max_odds', type=float)  # Default to None if not provided
+    bet_amount = request.form.get('bet_amount', type=float)  # Default to None if not provided
+    desired_profit = request.form.get('desired_profit', type=float)  # Default to None if not provided
+
+    # Validate input
+    if not website or not models or not bet_amount or not max_odds or not desired_profit:
+        return render_template('error.html', message="All fields are required.")
+
+    if bet_amount <= 0:
+        return render_template('error.html', message="Bet Amount must be positive in euros.")
+    
+    if max_odds <= 0:
+        return render_template('error.html', message="Max Odds must be a positive value.")
+    
+    if not (1 <= desired_profit <= 1000):
+        return render_template('error.html', message="Desired Profit should be between 1% and 1000%.")
+
     season = request.form.get('season', '2025')  # Default to 2025 if not provided
 
     # Generate or retrieve the user ID (UUID for uniqueness)
