@@ -1,16 +1,15 @@
-import os
-import http.client
-import json
-import logging
-
-def get_gambling_odds():
+def get_gambling_odds(website):
     """
-    Fetch gambling odds from the Bet365 API.
+    Fetch gambling odds from the Bet365 API or other websites based on the 'website' parameter.
+
+    Args:
+        website (str): The website name for which to fetch odds.
 
     Returns:
         list: A list of dictionaries containing odds information, or None if an error occurs.
     """
-    # Retrieve the API key from environment variables
+    # You could modify this logic to handle different websites based on the `website` argument.
+    # For now, this example keeps using the Bet365 API for demonstration purposes.
     api_key = os.getenv('API_KEY')
     if not api_key:
         logging.error("API key is missing. Please set the 'API_KEY' environment variable.")
@@ -24,7 +23,7 @@ def get_gambling_odds():
     }
 
     try:
-        # Make the API request
+        # Make the API request (you can customize this based on the `website`)
         conn.request("GET", "/bet365/get_betfair_forks", headers=headers)
         res = conn.getresponse()
         data = res.read()
@@ -59,13 +58,3 @@ def get_gambling_odds():
         return None
     finally:
         conn.close()
-
-# Example usage
-if __name__ == "__main__":
-    odds = get_gambling_odds()
-    if odds:
-        print("Gambling odds fetched successfully!")
-        for odd in odds:
-            print(odd)
-    else:
-        print("Failed to fetch gambling odds.")
