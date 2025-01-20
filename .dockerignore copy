@@ -1,0 +1,22 @@
+# Virtual environment
+src/scripts/venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Docker related files
+*.log
+*.sqlite3
+
+# Environment-specific files
+*.env
+
+# IDE/editor specific files
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
