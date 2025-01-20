@@ -28,7 +28,7 @@ def get_gambling_odds(website):
     api_key = os.getenv('GAMBLING_API_KEY')
     url = 'https://api.sportsgamesodds.com/v1/odds?oddsAvailable=true'
     headers = { 'X-Api-Key': api_key }
-    
+
     logging.debug(f"Fetching gambling odds from: {url} for website: {website}")
 
     try:
