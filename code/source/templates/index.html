@@ -5,59 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gambling Game</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            text-align: center;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-weight: bold;
-        }
-        select, input[type="number"], button {
-            width: 100%;
-            padding: 8px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .info {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .info h3 {
-            color: #333;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; }
+        h1 { text-align: center; }
+        form { max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        label { font-weight: bold; }
+        select, input[type="number"], button { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .error { color: red; font-size: 0.9em; margin-top: 10px; }
     </style>
 </head>
 <body>
     <h1>Welcome to the Gambling Game</h1>
 
-    <!-- Betting form -->
     <form action="/bet" method="POST" id="betForm">
         <label for="website">Select Gambling Website:</label>
         <select id="website" name="website" required>
@@ -73,7 +33,7 @@
             <option value="model_3">Model C</option>
         </select><br>
         
-        <label for="max_odds">Max Odds :</label>
+        <label for="max_odds">Max Odds:</label>
         <input type="number" id="max_odds" name="max_odds" step="0.01" min="0.01" required><br>
         
         <label for="bet_amount">Bet Amount (€):</label>
@@ -82,16 +42,12 @@
         <label for="desired_profit">Desired Profit:</label>
         <input type="number" id="desired_profit" name="desired_profit" min="1" max="1000" required><br>
         
-        <!-- user_id is handled in the backend, not exposed here -->
-        
         <button type="submit">Submit</button>
     </form>
 
-    <!-- Error messages -->
     <div class="error" id="errorMessage"></div>
 
     <script>
-        // Form validation
         document.getElementById('betForm').addEventListener('submit', function(event) {
             let errorMessage = '';
             const betAmount = parseFloat(document.getElementById('bet_amount').value);
@@ -99,10 +55,10 @@
             const desiredProfit = parseFloat(document.getElementById('desired_profit').value);
 
             if (betAmount <= 0) {
-                errorMessage += 'Bet Amount should be in euros.\n';
+                errorMessage += 'Bet Amount should be positive.\n';
             }
             if (maxOdds <= 0) {
-                errorMessage += 'Max Odds.\n';
+                errorMessage += 'Max Odds must be greater than 0.\n';
             }
             if (desiredProfit < 1 || desiredProfit > 1000) {
                 errorMessage += 'Desired Profit should be between 1% and 1000%.\n';
@@ -114,6 +70,5 @@
             }
         });
     </script>
-
 </body>
 </html>
