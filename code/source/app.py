@@ -9,18 +9,31 @@ logging.basicConfig(level=logging.DEBUG)  # Change to INFO or ERROR in productio
 
 app = Flask(__name__)
 
-# Function to fetch gambling odds from an API (e.g., OddsAPI)
+# Function to fetch soccer match data from TheSportsDB API
+def get_sports_data():
+    api_key = 'your_api_key'  # Replace with your API key
+    url = f'https://www.thesportsdb.com/api/v1/json/{api_key}/eventsnextleague.php?id=4328'  # Example: Premier League data
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Ensure the request was successful
+        data = response.json()
+        return data['events']
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching sports data: {e}")
+        return None
+
+# Function to fetch gambling odds from a new API (replace with actual URL)
 def get_gambling_odds(website):
     api_key = 'your_api_key'  # Replace with your actual API key
-    url = f'https://api.oddsapi.io/v1/odds?apiKey={api_key}&sport=soccer'
-    
+    url = f'https://api.gamblingapi.com/v1/odds?apiKey={api_key}&sport=soccer'
+
     logging.debug(f"Fetching gambling odds from: {url} for website: {website}")
 
     try:
         response = requests.get(url)
         response.raise_for_status()  # Check if request was successful
         data = response.json()
-        
+
         # Example logic for selecting odds based on gambling site
         if website == 'Site A':
             logging.debug(f"Odds for Site A: {data['data']['Site A']}")
@@ -28,7 +41,7 @@ def get_gambling_odds(website):
         elif website == 'Site B':
             logging.debug(f"Odds for Site B: {data['data']['Site B']}")
             return data['data']['Site B']
-        
+
         logging.warning(f"No odds found for website: {website}")
         return None
     except requests.exceptions.RequestException as e:
@@ -68,7 +81,7 @@ def bet():
     if not (1 <= desired_profit <= 1000):
         logging.error("Invalid desired profit value")
         return render_template('error.html', message="Desired Profit should be between 1% and 1000%.")
-
+    
     # Fetch gambling odds from the API
     odds = get_gambling_odds(website)
     if odds is None:
@@ -78,13 +91,11 @@ def bet():
     logging.debug(f"Fetched odds: {odds}")
 
     # Use the odds, user preferences, and models to make a bet prediction
-    # Placeholder prediction logic - update as per actual implementation
     predicted_outcome = "Win" if random.choice([True, False]) else "Lose"
     
     logging.debug(f"Predicted outcome: {predicted_outcome}")
 
     # Save the bet data
-    # Assuming user_id is available (you might need to adapt this part)
     user_id = str(uuid.uuid4())  # For demonstration purposes
     save_user_bet(user_id, models, bet_amount, predicted_outcome)
 
@@ -98,4 +109,4 @@ def bet():
 
 # Run the Flask app (only needed if you're running the app locally)
 if __name__ == '__main__':
-    app.run(debug=True)  # Set debug=True for more verbose logging in development
+    app.run(debug=True)
