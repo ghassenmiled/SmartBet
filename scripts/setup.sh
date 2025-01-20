@@ -74,6 +74,9 @@ pip install --upgrade flask==2.2.2 werkzeug==2.2.2 scikit-learn pandas numpy || 
 echo "Step 7: Checking if the API_KEY environment variable is set..."
 if [ -z "$API_KEY" ]; then
     echo "Warning: API_KEY environment variable is not set. Please set it before running the app."
+    
+    # Prompt for API key if not set
+    get_api_key
 else
     echo "API_KEY environment variable is set."
 fi
@@ -90,8 +93,6 @@ get_api_key() {
         echo "API key set successfully."
     fi
 }
-
-get_api_key
 
 # Step 9: Check if Docker or Podman is installed
 check_container_tools() {
