@@ -1,55 +1,71 @@
-from flask import Flask, render_template, request
+import os
+import http.client
+import json
 import logging
-from src.api.odds_pi import get_gambling_odds
-from src.prediction.prediction import predict_bet
-from src.preprocessing.data_preprocessing import preprocess_data
 
-# Set up logging for verbose debugging
-logging.basicConfig(level=logging.DEBUG)
+def get_gambling_odds():
+    """
+    Fetch gambling odds from the Bet365 API.
 
-app = Flask(__name__)
+    Returns:
+        list: A list of dictionaries containing odds information, or None if an error occurs.
+    """
+    # Retrieve the API key from environment variables
+    api_key = os.getenv('API_KEY')
+    if not api_key:
+        logging.error("API key is missing. Please set the 'API_KEY' environment variable.")
+        return None
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+    # Configure the HTTPS connection
+    conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
+    headers = {
+        'x-rapidapi-key': api_key,
+        'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
+    }
 
-@app.route('/bet', methods=['POST'])
-def bet():
-    website = request.form.get('website')
-    model = request.form.get('model')
-    max_odds = request.form.get('max_odds', type=float)
-    desired_profit = request.form.get('desired_profit', type=float)
+    try:
+        # Make the API request
+        conn.request("GET", "/bet365/get_betfair_forks", headers=headers)
+        res = conn.getresponse()
+        data = res.read()
 
-    logging.debug(f"Received form data: Website={website}, Model={model}, Max Odds={max_odds}, Desired Profit={desired_profit}")
+        # Decode and parse JSON data
+        data = json.loads(data.decode("utf-8"))
 
-    if not website:
-        logging.error("Website is missing")
-        return render_template('error.html', message="Website is required.")
+        if isinstance(data, list) and data:
+            # Process and extract relevant odds data
+            odds_list = [
+                {
+                    "event_name": event.get('bK1_EventName', 'N/A'),
+                    "bookmaker1": event.get('bookmaker1', 'N/A'),
+                    "bet_name1": event.get('bK1_BetName', 'N/A'),
+                    "bet_coef1": event.get('bK1_BetCoef', 'N/A'),
+                    "bookmaker2": event.get('bookmaker2', 'N/A'),
+                    "bet_name2": event.get('bK2_BetName', 'N/A'),
+                    "bet_coef2": event.get('bK2_BetCoef', 'N/A'),
+                }
+                for event in data
+            ]
+            return odds_list
+        else:
+            logging.error("Invalid or empty data structure received from the API.")
+            return None
 
-    if not max_odds or max_odds <= 0:
-        logging.error("Invalid or missing Max Odds")
-        return render_template('error.html', message="Max Odds should be a positive number.")
+    except json.JSONDecodeError as json_err:
+        logging.error(f"JSON decoding error: {json_err}")
+        return None
+    except Exception as e:
+        logging.error(f"Error fetching gambling odds: {e}")
+        return None
+    finally:
+        conn.close()
 
-    if not desired_profit or desired_profit <= 0:
-        logging.error("Invalid or missing Desired Profit")
-        return render_template('error.html', message="Desired Profit should be a positive number.")
-
-    # Fetch gambling odds from the website
-    odds = get_gambling_odds(website)
-    if odds is None:
-        logging.error(f"Failed to fetch odds for website: {website}")
-        return render_template('error.html', message="Failed to fetch odds for the selected website.")
-    
-    # Preprocess the data (if needed)
-    processed_data = preprocess_data(odds)
-
-    # Use the model to predict the bet outcome
-    bet_prediction = predict_bet(processed_data, model)
-
-    logging.debug(f"Bet Prediction: {bet_prediction}")
-
-    return render_template('result.html', website=website, model=model, max_odds=max_odds, 
-                           desired_profit=desired_profit, odds=odds, bet_prediction=bet_prediction)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# Example usage
+if __name__ == "__main__":
+    odds = get_gambling_odds()
+    if odds:
+        print("Gambling odds fetched successfully!")
+        for odd in odds:
+            print(odd)
+    else:
+        print("Failed to fetch gambling odds.")
