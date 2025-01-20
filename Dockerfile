@@ -6,8 +6,8 @@ WORKDIR /app
 
 # Copy the necessary files into the container
 COPY requirements.txt /app/
-COPY setup.sh /app/scripts/setup.sh
-COPY reset.sh /app/scripts/reset.sh
+COPY scripts/setup.sh /app/scripts/setup.sh
+COPY scripts/reset.sh /app/scripts/reset.sh
 COPY ../../src /app/src/
 COPY ../../data /app/data/
 
