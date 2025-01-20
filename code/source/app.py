@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request
 from models.data_preprocessing import get_real_world_data
 from models.betting_model import predict_bet_outcome
 from user_behavior.user_tracking import get_user_preferences, save_user_bet
-from odds_calculator import calculate_odds
+from utils.odds_calculator import calculate_odds
 import uuid  # for generating unique user IDs
 
 app = Flask(__name__)

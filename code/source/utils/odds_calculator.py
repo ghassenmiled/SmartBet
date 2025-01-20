@@ -1,5 +1,5 @@
 import random
-from models.odds_calculator import calculate_odds
+from .odds_calculator import calculate_odds
 
 def calculate_odds(team_a_stats, team_b_stats):
     """
