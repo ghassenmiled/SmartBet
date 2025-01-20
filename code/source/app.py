@@ -25,38 +25,22 @@ def get_sports_data():
 
 # Function to fetch gambling odds from a new API
 def get_gambling_odds(website):
-    api_key = os.getenv('GAMBLING_API_KEY')
-    url = 'https://api.sportsgamesodds.com/v1/odds?oddsAvailable=true'
-    headers = { 'X-Api-Key': api_key }
-    
-    logging.debug(f"Fetching gambling odds from: {url} for website: {website}")
-
+    api_key = os.getenv('SPORTS_API_KEY')
+    url = 'https://api.sportsgamesodds.com/v1/odds'
+    headers = {'X-Api-Key': api_key}
+    params = {
+        'oddsAvailable': 'true',
+        'limit': 10,  # Adjust as needed
+        'markets': 'moneyline',  # Example market type
+        'sport': 'nfl'  # Example sport type
+    }
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, params=params)
         response.raise_for_status()
-
-        # Log the full response for debugging
-        logging.debug(f"Response from API: {response.text}")
-
-        # Check if the expected odds data exists in the response
         data = response.json()
-        if 'data' not in data or not data['data']:
-            logging.error(f"No odds data found in the response for website: {website}")
-            return None
-
-        # Check if the website's odds are available in the response
-        if website == 'Site A' and 'Site A' in data['data']:
-            logging.debug(f"Odds for Site A: {data['data']['Site A']}")
-            return data['data']['Site A']
-        elif website == 'Site B' and 'Site B' in data['data']:
-            logging.debug(f"Odds for Site B: {data['data']['Site B']}")
-            return data['data']['Site B']
-
-        logging.warning(f"No odds found for website: {website}")
-        return None
-
+        return data['odds']
     except requests.exceptions.RequestException as e:
-        logging.error(f"Error fetching gambling odds: {e}")
+        logging.error(f"Error fetching sports data: {e}")
         return None
 
 @app.route('/')
