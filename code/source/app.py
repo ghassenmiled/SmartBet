@@ -1,8 +1,4 @@
 from flask import Flask, render_template, request
-from models.data_preprocessing import get_real_world_data
-from models.betting_model import predict_bet_outcome
-from user_behavior.user_tracking import get_user_preferences, save_user_bet
-from utils.odds_calculator import calculate_odds
 import uuid  # for generating unique user IDs
 
 app = Flask(__name__)
@@ -16,6 +12,12 @@ def home():
 
 @app.route('/bet', methods=['POST'])
 def bet():
+    # Dynamically import modules to avoid circular import issues
+    from models.data_preprocessing import get_real_world_data
+    from models.betting_model import predict_bet_outcome
+    from user_behavior.user_tracking import get_user_preferences, save_user_bet
+    from utils.odds_calculator import calculate_odds
+
     # Retrieve form data
     website = request.form.get('website')  # Gambling website
     model = request.form.get('model')  # Chosen model for prediction
