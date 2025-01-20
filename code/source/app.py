@@ -3,28 +3,29 @@ import uuid  # for generating unique user IDs
 import random
 import requests  # to fetch odds from the API
 import logging
+import os
 
 # Set up logging for verbose debugging
 logging.basicConfig(level=logging.DEBUG)  # Change to INFO or ERROR in production
 
 app = Flask(__name__)
 
-# Function to fetch soccer match data from TheSportsDB API
+# Function to fetch sports data from Sports Game Odds API
 def get_sports_data():
-    api_key = 'your_api_key'  # Replace with your API key
-    url = f'https://www.thesportsdb.com/api/v1/json/{api_key}/eventsnextleague.php?id=4328'  # Example: Premier League data
+    api_key = os.getenv('SPORTS_API_KEY')  # Retrieve API key from environment variables
+    url = f'https://api.sportsgameodds.com/v1/odds?apiKey={api_key}&sport=nfl'  # Example: NFL odds
     try:
         response = requests.get(url)
         response.raise_for_status()  # Ensure the request was successful
         data = response.json()
-        return data['events']
+        return data['odds']  # Adjust based on the actual response structure
     except requests.exceptions.RequestException as e:
-        print(f"Error fetching sports data: {e}")
+        logging.error(f"Error fetching sports data: {e}")
         return None
 
 # Function to fetch gambling odds from a new API (replace with actual URL)
 def get_gambling_odds(website):
-    api_key = 'your_api_key'  # Replace with your actual API key
+    api_key = os.getenv('GAMBLING_API_KEY')  # Retrieve gambling API key from environment
     url = f'https://api.gamblingapi.com/v1/odds?apiKey={api_key}&sport=soccer'
 
     logging.debug(f"Fetching gambling odds from: {url} for website: {website}")
@@ -109,4 +110,4 @@ def bet():
 
 # Run the Flask app (only needed if you're running the app locally)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Debug mode is enabled
