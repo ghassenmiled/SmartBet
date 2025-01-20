@@ -49,35 +49,23 @@ def index():
 
 @app.route('/bet', methods=['POST'])
 def bet():
-    from models.data_preprocessing import get_real_world_data
-    from models.betting_model import predict_bet_outcome
-    from user_behavior.user_tracking import get_user_preferences, save_user_bet
-    from utils.odds_calculator import calculate_odds
+    # from code.source.models.data.data_preprocessing import get_real_world_data
+    # from code.source.models.bet.betting_model import predict_bet_outcome
+    # from user_behavior.user_tracking import get_user_preferences, save_user_bet
+    # from utils.odds_calculator import calculate_odds
 
     website = request.form.get('website')
-    models = request.form.getlist('model')
-    max_odds = request.form.get('max_odds', type=float)
-    bet_amount = request.form.get('bet_amount', type=float)
-    desired_profit = request.form.get('desired_profit', type=float)
+    # models = request.form.getlist('model')
+    # max_odds = request.form.get('max_odds', type=float)
+    # bet_amount = request.form.get('bet_amount', type=float)
+    # desired_profit = request.form.get('desired_profit', type=float)
 
-    logging.debug(f"Received form data: Website={website}, Models={models}, Max Odds={max_odds}, Bet Amount={bet_amount}, Desired Profit={desired_profit}")
-    
-    if not website or not models or not bet_amount or not max_odds or not desired_profit:
-        logging.error("One or more required fields are missing")
-        return render_template('error.html', message="All fields are required.")
+    logging.debug(f"Received form data: Website={website}")
 
-    if bet_amount <= 0:
-        logging.error("Invalid bet amount")
-        return render_template('error.html', message="Bet Amount must be positive and in euros.")
-    
-    if max_odds <= 0:
-        logging.error("Invalid max odds value")
-        return render_template('error.html', message="Max Odds must be a positive value.")
-    
-    if not (1 <= desired_profit <= 1000):
-        logging.error("Invalid desired profit value")
-        return render_template('error.html', message="Desired Profit should be between 1% and 1000%.")
-    
+    if not website:
+        logging.error("Website is missing")
+        return render_template('error.html', message="Website is required.")
+
     odds = get_gambling_odds(website)
     if odds is None:
         logging.error(f"Failed to fetch odds for website: {website}")
@@ -85,16 +73,17 @@ def bet():
     
     logging.debug(f"Fetched odds: {odds}")
 
-    predicted_outcome = "Win" if random.choice([True, False]) else "Lose"
-    logging.debug(f"Predicted outcome: {predicted_outcome}")
+    # Commenting out other parts for now
+    # predicted_outcome = "Win" if random.choice([True, False]) else "Lose"
+    # logging.debug(f"Predicted outcome: {predicted_outcome}")
 
-    user_id = str(uuid.uuid4())
-    save_user_bet(user_id, models, bet_amount, predicted_outcome)
+    # user_id = str(uuid.uuid4())
+    # save_user_bet(user_id, models, bet_amount, predicted_outcome)
 
-    dynamic_odds = calculate_odds(odds, models)
-    logging.debug(f"Calculated dynamic odds: {dynamic_odds}")
+    # dynamic_odds = calculate_odds(odds, models)
+    # logging.debug(f"Calculated dynamic odds: {dynamic_odds}")
 
-    return render_template('result.html', prediction=predicted_outcome, odds=dynamic_odds, bet_amount=bet_amount)
+    return render_template('result.html', odds=odds)
 
 if __name__ == '__main__':
     app.run(debug=True)
