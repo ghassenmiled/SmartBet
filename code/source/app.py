@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 # Function to fetch gambling odds from Website 
 def get_gambling_odds(website):
-    api_key = os.getenv('API_KEY')  
+    api_key = os.getenv('API_KEY')
     conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
 
     headers = {
@@ -24,18 +24,29 @@ def get_gambling_odds(website):
 
     try:
         conn.request("GET", "/bet365/get_betfair_forks", headers=headers)
-
         res = conn.getresponse()
         data = res.read()
 
         # Decode and load JSON data
         data = json.loads(data.decode("utf-8"))
 
-        # Check for valid data
-        if 'data' in data:
-            return data['data']
+        if isinstance(data, list) and len(data) > 0:
+            # Extract odds data from response
+            odds_list = []
+            for event in data:
+                odds_info = {
+                    "event_name": event.get('bK1_EventName'),
+                    "bookmaker1": event.get('bookmaker1'),
+                    "bet_name1": event.get('bK1_BetName'),
+                    "bet_coef1": event.get('bK1_BetCoef'),
+                    "bookmaker2": event.get('bookmaker2'),
+                    "bet_name2": event.get('bK2_BetName'),
+                    "bet_coef2": event.get('bK2_BetCoef'),
+                }
+                odds_list.append(odds_info)
+            return odds_list
         else:
-            logging.error(f"No odds data found for website: {website}")
+            logging.error("Invalid data structure received")
             return None
 
     except Exception as e:
