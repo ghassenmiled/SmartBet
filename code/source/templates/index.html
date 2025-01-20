@@ -61,12 +61,11 @@
             {% endfor %}
         </select><br>
 
-        <label for="model">Select Model:</label>
+        <label for="model">Model(s):</label>
         <select id="model" name="model" required>
-            <option value="model_a">Model A</option>
-            <option value="model_b">Model B</option>
-            <option value="model_c">Model C</option>
-            <!-- Add more models as needed -->
+            <option value="model_1">Model A</option>
+            <option value="model_2">Model B</option>
+            <option value="model_3">Model C</option>
         </select><br>
         
         <label for="max_odds">Max Odds:</label>
@@ -83,11 +82,5 @@
         <button type="submit">Submit</button>
     </form>
 
-    <!-- Info about real-world odds (displayed after user selects teams and submits) -->
-    <div class="info">
-        <h3>Current Betting Odds</h3>
-        <p>Team A Odds: {{ team_a_odds }}</p>
-        <p>Team B Odds: {{ team_b_odds }}</p>
-    </div>
 </body>
 </html>
