@@ -4,6 +4,19 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
+def get_real_world_data(file_path, file_type='csv', fill_missing=False):
+    """
+    Retrieve and preprocess real-world betting data.
+    This method is used to load and preprocess the data for predictions.
+
+    :param file_path: Path to the data file (CSV or Excel)
+    :param file_type: Type of the file ('csv', 'excel', etc.)
+    :param fill_missing: Whether to fill missing values or drop them
+    :return: Processed DataFrame
+    """
+    df = preprocess_data(file_path, file_type, fill_missing)
+    return df
+
 def preprocess_data(file_path, file_type='csv', fill_missing=False):
     """
     Preprocess the betting data.
@@ -16,7 +29,6 @@ def preprocess_data(file_path, file_type='csv', fill_missing=False):
     :param fill_missing: Whether to fill missing values or drop them
     :return: Processed DataFrame
     """
-
     # Step 1: Load the data file
     try:
         if file_type == 'csv':
