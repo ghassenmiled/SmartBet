@@ -26,11 +26,13 @@ def get_sports_data():
 # Function to fetch gambling odds from a new API
 def get_gambling_odds(website):
     api_key = os.getenv('GAMBLING_API_KEY')
-    url = f'https://api.gamblingapi.com/v1/odds?apiKey={api_key}&sport=soccer'
+    url = 'https://api.sportsgamesodds.com/v1/odds?oddsAvailable=true'
+    headers = { 'X-Api-Key': api_key }
+    
     logging.debug(f"Fetching gambling odds from: {url} for website: {website}")
 
     try:
-        response = requests.get(url)
+        response = requests.get(url, headers=headers)
         response.raise_for_status()
         data = response.json()
 
