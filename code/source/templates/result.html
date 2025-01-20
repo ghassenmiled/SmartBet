@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bet Result</title>
+</head>
+<body>
+    <h1>Bet Result</h1>
+    <h2>Selected Website: {{ website }}</h2>
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Odds</th>
+            <th>Prediction</th>
+        </tr>
+        {% for model in models %}
+        <tr>
+            <td>{{ model.model }}</td>
+            <td>{{ model.odds }}</td>
+            <td>{{ model.prediction }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Real-world Betting Odds</h3>
+    <p>Team A Odds: {{ team_a_odds }}</p>
+    <p>Team B Odds: {{ team_b_odds }}</p>
+
+</body>
+</html>
