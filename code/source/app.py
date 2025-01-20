@@ -4,6 +4,8 @@ import random
 import requests
 import logging
 import os
+import http.client
+import json
 
 # Set up logging for verbose debugging
 logging.basicConfig(level=logging.DEBUG)
@@ -23,18 +25,24 @@ def get_sports_data():
         logging.error(f"Error fetching sports data: {e}")
         return None
 
-# Function to fetch gambling odds from a new API
+# Function to fetch gambling odds from Website 
 def get_gambling_odds(website):
-    api_key = os.getenv('API_KEY')  # Your RapidAPI key
-    url = 'https://bet365-api-inplay.p.rapidapi.com/bet365/get_betfair_forks'
+    api_key = os.getenv('API_KEY')  
+    conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
+
     headers = {
-        'x-rapidapi-host': 'bet365-api-inplay.p.rapidapi.com',
-        'x-rapidapi-key': api_key
+        'x-rapidapi-key': api_key,
+        'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
     }
+
     try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
+        conn.request("GET", "/bet365/get_betfair_forks", headers=headers)
+
+        res = conn.getresponse()
+        data = res.read()
+
+        # Decode and load JSON data
+        data = json.loads(data.decode("utf-8"))
 
         # Check for valid data
         if 'data' in data:
@@ -43,7 +51,7 @@ def get_gambling_odds(website):
             logging.error(f"No odds data found for website: {website}")
             return None
 
-    except requests.exceptions.RequestException as e:
+    except Exception as e:
         logging.error(f"Error fetching gambling odds: {e}")
         return None
 
