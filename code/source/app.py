@@ -12,19 +12,6 @@ logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 
-# Function to fetch sports data from Sports Game Odds API
-def get_sports_data():
-    api_key = os.getenv('SPORTS_API_KEY')
-    url = f'https://api.sportsgameodds.com/v1/odds?apiKey={api_key}&sport=nfl'
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        return data['odds']
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Error fetching sports data: {e}")
-        return None
-
 # Function to fetch gambling odds from Website 
 def get_gambling_odds(website):
     api_key = os.getenv('API_KEY')  
