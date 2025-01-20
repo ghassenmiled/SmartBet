@@ -54,9 +54,8 @@ def get_gambling_odds(website):
         return None
 
 @app.route('/')
-def index():
-    gambling_sites = ['Sportsbook1', 'Sportsbook2', 'Sportsbook3']  # List of gambling sites
-    return render_template('index.html', gambling_sites=gambling_sites)
+def index():# List of gambling sites
+    return render_template('index.html')
 
 @app.route('/bet', methods=['POST'])
 def bet():

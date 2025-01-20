@@ -3,6 +3,11 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" &>/dev/null
+}
+
 # Function to prompt for the API key and export it
 get_api_key() {
     echo "Please enter your Sports API key:"
@@ -14,48 +19,69 @@ get_api_key() {
 # Request API key
 get_api_key
 
+# Check if Docker and Podman are installed
+check_container_tools() {
+    if ! command_exists docker && ! command_exists podman; then
+        echo "Error: Neither Docker nor Podman is installed. Please install one before proceeding."
+        exit 1
+    fi
+}
+
+# Request and check for Docker/Podman
+check_container_tools
+
 # Function to stop all running containers
 stop_containers() {
     echo "Stopping all running containers..."
-    # Stop Docker containers
-    docker ps -q | xargs -r docker stop
-    # Stop Podman containers
-    podman ps -q | xargs -r podman stop
+    if command_exists docker; then
+        docker ps -q | xargs -r docker stop
+    fi
+    if command_exists podman; then
+        podman ps -q | xargs -r podman stop
+    fi
 }
 
 # Function to remove all containers (force removal)
 remove_containers() {
     echo "Removing all containers..."
-    # Remove Docker containers
-    docker ps -a -q | xargs -r docker rm
-    # Remove Podman containers
-    podman ps -a -q | xargs -r podman rm -f
+    if command_exists docker; then
+        docker ps -a -q | xargs -r docker rm
+    fi
+    if command_exists podman; then
+        podman ps -a -q | xargs -r podman rm -f
+    fi
 }
 
 # Function to remove all Docker images except Ubuntu images
 remove_docker_images() {
     echo "Removing all Docker images except Ubuntu images..."
-    # Remove Docker images except those starting with 'ubuntu'
-    docker images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r docker rmi -f || echo "No Docker images to remove"
+    if command_exists docker; then
+        docker images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r docker rmi -f || echo "No Docker images to remove"
+    fi
 }
 
 # Function to remove all Podman images except Ubuntu images
 remove_podman_images() {
     echo "Removing all Podman images except Ubuntu images..."
-    # Remove Podman images except those starting with 'ubuntu'
-    podman images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r podman rmi -f || echo "No Podman images to remove"
+    if command_exists podman; then
+        podman images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r podman rmi -f || echo "No Podman images to remove"
+    fi
 }
 
 # Function to clean up unused Docker volumes
 remove_docker_volumes() {
     echo "Cleaning up unused Docker volumes..."
-    docker volume prune -f || echo "No unused Docker volumes to remove"
+    if command_exists docker; then
+        docker volume prune -f || echo "No unused Docker volumes to remove"
+    fi
 }
 
 # Function to clean up unused Docker networks
 remove_docker_networks() {
     echo "Cleaning up unused Docker networks..."
-    docker network prune -f || echo "No unused Docker networks to remove"
+    if command_exists docker; then
+        docker network prune -f || echo "No unused Docker networks to remove"
+    fi
 }
 
 # Function to build and run the app container
@@ -69,13 +95,18 @@ build_and_run_app() {
 
     # Step 2: Stop and remove the existing container if it exists
     echo "Checking for existing container..."
-    if docker ps -a --format '{{.Names}}' | grep -q "bet-app"; then
-      echo "Stopping existing container..."
-      docker stop bet-app || { echo "Failed to stop existing container"; exit 1; }
-      echo "Removing existing container..."
-      docker rm bet-app || { echo "Failed to remove existing container"; exit 1; }
+    if command_exists docker && docker ps -a --format '{{.Names}}' | grep -q "bet-app"; then
+        echo "Stopping existing container..."
+        docker stop bet-app || { echo "Failed to stop existing container"; exit 1; }
+        echo "Removing existing container..."
+        docker rm bet-app || { echo "Failed to remove existing container"; exit 1; }
+    elif command_exists podman && podman ps -a --format '{{.Names}}' | grep -q "bet-app"; then
+        echo "Stopping existing container..."
+        podman stop bet-app || { echo "Failed to stop existing container"; exit 1; }
+        echo "Removing existing container..."
+        podman rm bet-app || { echo "Failed to remove existing container"; exit 1; }
     else
-      echo "No existing container found. Proceeding..."
+        echo "No existing container found. Proceeding..."
     fi
 
     # Step 3: Build the container image using docker

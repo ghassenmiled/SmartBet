@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bet Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        h3 {
+            margin-top: 30px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            text-align: center;
+            padding: 10px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bet Result</h1>
+    <h3>Your Selections:</h3>
+    <ul>
+        <li><strong>Max Odds:</strong> {{ max_odd }}</li>
+        <li><strong>Desired Profit:</strong> {{ desired_profit }}%</li>
+        <li><strong>Model:</strong> {{ model }}</li>
+        <li><strong>Website:</strong> {{ website }}</li>
+    </ul>
+
+    <h3>Generated Bets:</h

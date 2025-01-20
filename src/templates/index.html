@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f0f0f5;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+        input[type="number"], select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the tooltip trigger */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Gambling Game</h1>
+    <form action="/bet" method="POST" id="betForm">
+        <label for="model">Model:
+            <span class="tooltip">?
+                <span class="tooltip-text">Select the AI model for predictions.</span>
+            </span>
+        </label>
+        <select id="model" name="model" required>
+            <option value="" disabled selected>Select a model</option>
+            <option value="model_1">Model A</option>
+            <option value="model_2">Model B</option>
+            <option value="model_3">Model C</option>
+        </select>
+
+        <label for="max_odds">Max Odds (€):
+            <span class="tooltip">?
+                <span class="tooltip-text">Maximum odds for the bet.</span>
+            </span>
+        </label>
+        <input type="number" id="max_odds" name="max_odds" step="0.01" min="0.01" required>
+
+        <label for="bet_amount">Bet Amount (€):
+            <span class="tooltip">?
+                <span class="tooltip-text">The amount you want to bet.</span>
+            </span>
+        </label>
+        <input type="number" id="bet_amount" name="bet_amount" step="0.01" min="0.01" required>
+
+        <label for="desired_profit">Desired Profit (%):
+            <span class="tooltip">?
+                <span class="tooltip-text">Desired profit percentage (1-1000%).</span>
+            </span>
+        </label>
+        <input type="number" id="desired_profit" name="desired_profit" min="1" max="1000" required>
+
+        <button type="submit">Submit</button>
+    </form>
+    <div class="error" id="errorMessage"></div>
+
+    <script>
+        document.getElementById('betForm').addEventListener('submit', function(event) {
+            let errorMessage = '';
+            const betAmount = parseFloat(document.getElementById('bet_amount').value);
+            const maxOdds = parseFloat(document.getElementById('max_odds').value);
+            const desiredProfit = parseFloat(document.getElementById('desired_profit').value);
+
+            if (isNaN(betAmount) || betAmount <= 0) {
+                errorMessage += 'Bet Amount should be positive.\n';
+            }
+            if (isNaN(maxOdds) || maxOdds <= 0) {
+                errorMessage += 'Max Odds must be greater than 0.\n';
+            }
+            if (isNaN(desiredProfit) || desiredProfit < 1 || desiredProfit > 1000) {
+                errorMessage += 'Desired Profit should be between 1% and 1000%.\n';
+            }
+
+            if (errorMessage) {
+                event.preventDefault();
+                document.getElementById('errorMessage').textContent = errorMessage;
+            }
+        });
+    </script>
+</body>
+</html>

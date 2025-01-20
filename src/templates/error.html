@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #D9534F;
+            text-align: center;
+        }
+        p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            font-size: 1.1em;
+            text-decoration: none;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Error Occurred</h1>
+        <p>{{ message }}</p>
+        <a href="/">Go back to the home page</a>
+    </div>
+</body>
+</html>
