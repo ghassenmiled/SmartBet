@@ -4,7 +4,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-def get_real_world_data(file_path, file_type='csv', fill_missing=False):
+def get_real_world_data(file_path, file_type='csv', fill_missing=False, missing_value_strategy='mean'):
     """
     Retrieve and preprocess real-world betting data.
     This method is used to load and preprocess the data for predictions.
@@ -12,12 +12,13 @@ def get_real_world_data(file_path, file_type='csv', fill_missing=False):
     :param file_path: Path to the data file (CSV or Excel)
     :param file_type: Type of the file ('csv', 'excel', etc.)
     :param fill_missing: Whether to fill missing values or drop them
+    :param missing_value_strategy: Strategy to fill missing values ('mean', 'median', 'mode', 'zero')
     :return: Processed DataFrame
     """
-    df = preprocess_data(file_path, file_type, fill_missing)
+    df = preprocess_data(file_path, file_type, fill_missing, missing_value_strategy)
     return df
 
-def preprocess_data(file_path, file_type='csv', fill_missing=False):
+def preprocess_data(file_path, file_type='csv', fill_missing=False, missing_value_strategy='mean'):
     """
     Preprocess the betting data.
     - Handles missing values
@@ -27,6 +28,7 @@ def preprocess_data(file_path, file_type='csv', fill_missing=False):
     :param file_path: Path to the data file (CSV or others)
     :param file_type: Type of the file ('csv', 'excel', etc.)
     :param fill_missing: Whether to fill missing values or drop them
+    :param missing_value_strategy: Strategy to fill missing values ('mean', 'median', 'mode', 'zero')
     :return: Processed DataFrame
     """
     # Step 1: Load the data file
@@ -41,21 +43,38 @@ def preprocess_data(file_path, file_type='csv', fill_missing=False):
         logging.error(f"Error loading file {file_path}: {e}")
         raise
 
-    logging.info(f"Loaded {len(df)} rows from {file_path}")
+    logging.info(f"Loaded {len(df)} rows and {df.shape[1]} columns from {file_path}")
 
     # Step 2: Handle missing values
     if fill_missing:
-        # Fill missing numerical values with mean and categorical with 'missing'
-        for column in df.select_dtypes(include=['object']).columns:
-            df[column] = df[column].fillna('missing')
-        
-        for column in df.select_dtypes(include=['float64', 'int64']).columns:
-            df[column] = df[column].fillna(df[column].mean())
-        
-        logging.info("Missing values filled")
+        if missing_value_strategy == 'mean':
+            # Fill missing numerical values with mean
+            for column in df.select_dtypes(include=['float64', 'int64']).columns:
+                df[column] = df[column].fillna(df[column].mean())
+            logging.info("Missing numerical values filled with mean")
+
+        elif missing_value_strategy == 'median':
+            # Fill missing numerical values with median
+            for column in df.select_dtypes(include=['float64', 'int64']).columns:
+                df[column] = df[column].fillna(df[column].median())
+            logging.info("Missing numerical values filled with median")
+
+        elif missing_value_strategy == 'mode':
+            # Fill missing categorical values with mode
+            for column in df.select_dtypes(include=['object']).columns:
+                df[column] = df[column].fillna(df[column].mode()[0])
+            logging.info("Missing categorical values filled with mode")
+
+        elif missing_value_strategy == 'zero':
+            # Fill all missing values with zero
+            df = df.fillna(0)
+            logging.info("Missing values filled with zero")
+        else:
+            raise ValueError("Unsupported missing value strategy. Please use 'mean', 'median', 'mode', or 'zero'.")
+
     else:
         df = df.dropna()  # Drop rows with missing values
-        logging.info("Missing values dropped")
+        logging.info("Dropped rows with missing values")
 
     # Step 3: Normalize numerical columns (e.g., betting odds, bet amounts)
     numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
@@ -74,5 +93,5 @@ def preprocess_data(file_path, file_type='csv', fill_missing=False):
     else:
         logging.info("No categorical columns to encode.")
 
-    logging.info("Preprocessing completed")
+    logging.info(f"Preprocessing completed. Final shape: {df.shape}")
     return df
