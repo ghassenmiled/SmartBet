@@ -27,6 +27,7 @@ RUN python3 -m venv /app/venv \
 
 # Set the environment variable to point to the virtual environment
 ENV PATH="/app/venv/bin:$PATH"
+ENV PYTHONPATH=/app/src:$PYTHONPATH
 
 # Expose the application port (default Flask port)
 EXPOSE 5000
