@@ -6,8 +6,8 @@ set -e
 # Function to prompt for the API key and export it
 get_api_key() {
     echo "Please enter your Sports API key:"
-    read -r SPORTS_API_KEY
-    export SPORTS_API_KEY
+    read -r API_KEY
+    export API_KEY
     echo "API key set successfully."
 }
 
