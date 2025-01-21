@@ -91,17 +91,17 @@
         </label>
         <input type="text" id="website" name="website" required>
 
-        <label for="model">Model:
-            <span class="tooltip">?
-                <span class="tooltip-text">Select the AI model for predictions.</span>
-            </span>
-        </label>
-        <select id="model" name="model" required>
-            <option value="" disabled selected>Select a model</option>
-            <option value="model_1">Model A</option>
-            <option value="model_2">Model B</option>
-            <option value="model_3">Model C</option>
-        </select>
+        <form method="post" action="/predict">
+            <label for="model">Select a model:</label>
+            <select id="model" name="model" required>
+                <option value="" disabled selected>Select a model</option>
+                {% for model in models %}
+                    <option value="{{ model }}">{{ model.split('.')[0] }}</option>
+                {% endfor %}
+            </select>
+    
+            <button type="submit">Submit</button>
+        </form>
 
         <label for="max_odds">Maximum Desired Odd:
             <span class="tooltip">?

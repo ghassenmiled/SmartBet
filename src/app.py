@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
+import os
 import logging
 from api.odds_api import get_gambling_odds
-from src.prediction.prediction import predict_bet
+from src.prediction.prediction import predict_bet, load_model
 from src.preprocessing.data_preprocessing import preprocess_data
 
 # Set up logging for verbose debugging
@@ -10,8 +11,27 @@ logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    # Get the list of models in the models directory
+    models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
+    models = [f for f in os.listdir(models_dir) if f.endswith('.pkl')]
+
+    # Render the HTML template with the list of models
+    return render_template('index.html', models=models)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    selected_model = request.form['model']
+    model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', selected_model)
+    
+    # Log the selected model
+    logging.info(f"Selected model: {selected_model}")
+    logging.debug(f"Model path: {model_path}")
+
+    # Example: You can load the model and perform predictions here
+    # model = load_model(model_path)
+
+    return f"You selected the model: {selected_model}"
 
 @app.route('/bet', methods=['POST'])
 def bet():
@@ -47,9 +67,12 @@ def bet():
         logging.debug(odd)
 
     # Predict the bet outcome using the predict_bet function
-    bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
-
-    logging.debug(f"Bet Prediction: {bet_prediction}")
+    try:
+        bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
+        logging.debug(f"Bet Prediction: {bet_prediction}")
+    except Exception as e:
+        logging.error(f"Error during prediction: {e}")
+        return render_template('error.html', message="An error occurred during prediction.")
 
     # Return the result to the user
     return render_template('result.html', website=website, model=model, max_odds=max_odds, 

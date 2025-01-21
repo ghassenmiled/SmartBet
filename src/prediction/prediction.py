@@ -23,34 +23,38 @@ def preprocess_data(odds):
     Preprocesses the gambling odds data before feeding it into the prediction model.
     
     Args:
-        odds (list): List of gambling odds data (dictionary format).
+        odds (list of dict): List of gambling odds data in dictionary format.
         
     Returns:
         tuple: Scaled feature matrix and the target variable (event_name as a placeholder).
     """
+    if not isinstance(odds, list) or not all(isinstance(item, dict) for item in odds):
+        raise ValueError("Odds must be a list of dictionaries.")
+
     # Convert odds data to DataFrame for easier manipulation
     df = pd.DataFrame(odds)
     
     # Handle missing values
     df.fillna(0, inplace=True)
 
-    # Feature scaling (example: scale numerical columns)
+    # Validate required columns exist
+    required_columns = ['bet_coef1', 'bet_coef2', 'event_name']
+    missing_columns = [col for col in required_columns if col not in df.columns]
+    if missing_columns:
+        raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
+    
+    # Feature scaling
     scaler = StandardScaler()
-    # Ensure the columns 'bet_coef1' and 'bet_coef2' exist
-    if 'bet_coef1' not in df.columns or 'bet_coef2' not in df.columns:
-        raise ValueError("Columns 'bet_coef1' and 'bet_coef2' are required for scaling.")
-        
     features = scaler.fit_transform(df[['bet_coef1', 'bet_coef2']])
     
-    # Assuming 'event_name' is just a placeholder for actual target
-    return features, df['event_name']  # Adjust target if necessary
+    return features, df['event_name']
 
 def predict_bet(odds, model_name, max_odds, desired_profit):
     """
     Predicts which bets to place based on the provided model and odds.
     
     Args:
-        odds (list): List of gambling odds data.
+        odds (list of dict): List of gambling odds data.
         model_name (str): The name of the model to use for predictions.
         max_odds (float): The maximum odds allowed for the bet.
         desired_profit (float): The desired profit from the bet.
@@ -58,17 +62,12 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     Returns:
         tuple: (Predictions, Processed Data)
     """
-    # Mapping model names to file paths
-    model_paths = {
-        'logistic_regression': 'models/logistic_regression_model.pkl',
-        'random_forest': 'models/random_forest_model.pkl',
-        # Add more models as necessary
-    }
-
-    # Get the model path based on the model_name
-    model_path = model_paths.get(model_name)
-    if not model_path:
-        raise ValueError(f"Model '{model_name}' not found in the model path mapping.")
+    # Dynamic model path loading
+    models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
+    model_path = os.path.join(models_dir, f"{model_name}.pkl")
+    
+    if not os.path.exists(model_path):
+        raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
     # Preprocess the data
     processed_data, match_outcomes = preprocess_data(odds)
@@ -76,21 +75,21 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     # Load the prediction model
     prediction_model = load_model(model_path)
 
-    # Make predictions based on the model (assumes binary classification with `predict_proba`)
-    predicted_probabilities = prediction_model.predict_proba(processed_data)[:, 1]  # Binary classification
+    # Make predictions (assumes binary classification with `predict_proba`)
+    predicted_probabilities = prediction_model.predict_proba(processed_data)[:, 1]
 
     # Calculate expected value (EV) for each bet
     bet_predictions = []
     for i, probability in enumerate(predicted_probabilities):
-        bet_odd = odds[i]['bet_coef1']  # Example, update if needed
+        bet_odd = odds[i].get('bet_coef1', 0)
         ev = (probability * bet_odd) - (1 - probability)
         
-        # Append the bet with the EV calculation if it meets criteria
+        # Append the bet if EV is positive and odds meet criteria
         if ev > 0 and bet_odd <= max_odds:
             bet_predictions.append({
-                "event_name": odds[i]["event_name"],
-                "bookmaker": odds[i]["bookmaker1"],
-                "bet_name": odds[i]["bet_name1"],
+                "event_name": odds[i].get("event_name", "Unknown"),
+                "bookmaker": odds[i].get("bookmaker1", "Unknown"),
+                "bet_name": odds[i].get("bet_name1", "Unknown"),
                 "bet_coef": bet_odd,
                 "ev": ev
             })
@@ -107,6 +106,8 @@ def preprocess_match_data(match_data):
     Returns:
         list: Preprocessed match data.
     """
-    # You can add additional preprocessing steps here if necessary
-    # For now, we're just returning the match_data as is
+    if not isinstance(match_data, list):
+        raise ValueError("Match data must be a list.")
+    
+    # Additional preprocessing steps can be added here if necessary
     return match_data
