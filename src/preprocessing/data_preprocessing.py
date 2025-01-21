@@ -32,7 +32,7 @@ def preprocess_data(data):
     df['odds'] = df['bK1_BetCoef']  # Assuming the odds are associated with bK1_BetCoef
     df['match_outcome'] = df['winrate']  # For example, use winrate as match outcome
     
-    required_columns = ['team_strength', 'recent_form', 'odds', 'match_outcome']
+    required_columns = ['bK1_BetCoef', 'winrate']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         logging.error(f"Missing required columns: {', '.join(missing_columns)}")
