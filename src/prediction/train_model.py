@@ -44,7 +44,7 @@ def train_and_save_model(model_type='logistic_regression', model_filepath=None):
         model_filepath = MODEL_PATHS.get(model_type, 'models/model.pkl')
     
     # Generate synthetic classification dataset (you can replace this with real-world data)
-    X, y = make_classification(n_samples=1000, n_features=4, random_state=42)
+    X, y = make_classification(n_samples=1000, n_features=2, random_state=42)
     
     # Split data into training and test sets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
