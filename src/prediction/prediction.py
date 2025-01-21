@@ -2,6 +2,10 @@ import joblib
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import os
+import logging
+
+# Set up logging for better debugging
+logging.basicConfig(level=logging.DEBUG)
 
 def load_model(model_path):
     """
@@ -16,6 +20,7 @@ def load_model(model_path):
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
     
+    logging.debug(f"Loading model from {model_path}")
     return joblib.load(model_path)
 
 def preprocess_data(odds):
@@ -30,7 +35,9 @@ def preprocess_data(odds):
     """
     if not isinstance(odds, list) or not all(isinstance(item, dict) for item in odds):
         raise ValueError("Odds must be a list of dictionaries.")
-
+    
+    logging.debug("Converting odds data to DataFrame for preprocessing.")
+    
     # Convert odds data to DataFrame for easier manipulation
     df = pd.DataFrame(odds)
     
@@ -43,7 +50,9 @@ def preprocess_data(odds):
     if missing_columns:
         raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
     
-    # Feature scaling
+    logging.debug(f"Features available: {df.columns}")
+    
+    # Feature scaling (only 'bet_coef1' and 'bet_coef2')
     scaler = StandardScaler()
     features = scaler.fit_transform(df[['bet_coef1', 'bet_coef2']])
     
@@ -71,12 +80,14 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
         raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
     # Preprocess the data
+    logging.debug("Preprocessing odds data.")
     processed_data, match_outcomes = preprocess_data(odds)
 
     # Load the prediction model
     prediction_model = load_model(model_path)
 
     # Make predictions (binary classification using `predict_proba`)
+    logging.debug("Making predictions.")
     predicted_probabilities = prediction_model.predict_proba(processed_data)[:, 1]
 
     # Calculate expected value (EV) for each bet
@@ -94,6 +105,8 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
                 "bet_coef": bet_odd,
                 "ev": ev
             })
+    
+    logging.debug(f"Predicted {len(bet_predictions)} potential bets with positive EV.")
 
     return bet_predictions, processed_data
 
