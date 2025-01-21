@@ -64,7 +64,7 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     """
     # Dynamically build model path
     models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
-    model_path = os.path.join(models_dir, f"{model_name}")
+    model_path = os.path.join(models_dir, f"{model_name}.pkl")
     
     # Check if the model file exists
     if not os.path.exists(model_path):
