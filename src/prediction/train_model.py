@@ -1,6 +1,7 @@
 import os
 import joblib
 import logging
+import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
@@ -79,6 +80,37 @@ def train_and_save_model(model_type='logistic_regression', model_filepath=None):
         logging.error(f"Error during model training or saving: {e}")
         raise  # Re-raise the error to be caught higher up if needed
 
+def load_model(model_name):
+    """Load a saved model based on the model name."""
+    if model_name not in MODEL_PATHS:
+        raise ValueError(f"Model name '{model_name}' is not valid.")
+    
+    filepath = MODEL_PATHS[model_name]
+    
+    try:
+        model = joblib.load(filepath)
+        logging.info(f"Model '{model_name}' successfully loaded from {filepath}")
+        return model
+    except Exception as e:
+        logging.error(f"Error loading model '{model_name}': {e}")
+        raise  # Re-raise the error
+
+def predict(model, X_input):
+    """Make a prediction using the loaded model, ensuring correct input shape."""
+    try:
+        # Ensure X_input has the correct number of features (4 in this case)
+        if X_input.shape[1] != 4:
+            raise ValueError(f"Input features must have 4 columns, but got {X_input.shape[1]}")
+        
+        # Making predictions
+        predictions = model.predict(X_input)
+        logging.debug(f"Making predictions: {predictions}")
+        return predictions
+    
+    except Exception as e:
+        logging.error(f"Error during model prediction: {e}")
+        raise
+
 if __name__ == "__main__":
     # Ensure the 'models/' directory exists
     os.makedirs('models', exist_ok=True)
@@ -88,3 +120,22 @@ if __name__ == "__main__":
     
     # Train and save random forest model
     train_and_save_model(model_type='random_forest')
+
+    # Example usage for predictions
+    try:
+        # Load the models
+        lr_model = load_model('logistic_regression')
+        rf_model = load_model('random_forest')
+
+        # Example input data (with 4 features, matching the training data)
+        X_input = np.array([[0.5, 1.2, -0.3, 0.1], [0.3, -0.2, 1.4, -0.7]])
+        
+        # Making predictions
+        lr_predictions = predict(lr_model, X_input)
+        rf_predictions = predict(rf_model, X_input)
+        
+        logging.info(f"Logistic Regression Predictions: {lr_predictions}")
+        logging.info(f"Random Forest Predictions: {rf_predictions}")
+        
+    except Exception as e:
+        logging.error(f"Error in the example usage: {e}")
