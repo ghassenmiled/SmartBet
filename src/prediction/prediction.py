@@ -56,8 +56,8 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     """
     # Mapping model names to file paths
     model_paths = {
-        'logistic_regression': 'models/logistic_regression_model.pkl',
-        'random_forest': 'models/random_forest_model.pkl',
+        'logistic_regression': '/app/models/logistic_regression_model.pkl',
+        'random_forest': '/app/models/random_forest_model.pkl',
         # Add more models as necessary
     }
 
