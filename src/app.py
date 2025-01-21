@@ -19,19 +19,6 @@ def home():
     # Render the HTML template with the list of models
     return render_template('index.html', models=models)
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    selected_model = request.form['model']
-    model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', selected_model)
-    
-    # Log the selected model
-    logging.info(f"Selected model: {selected_model}")
-    logging.debug(f"Model path: {model_path}")
-
-    # Example: You can load the model and perform predictions here
-    # model = load_model(model_path)
-
-    return f"You selected the model: {selected_model}"
 
 @app.route('/bet', methods=['POST'])
 def bet():
