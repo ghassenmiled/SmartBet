@@ -19,9 +19,9 @@ def home():
     # Render the HTML template with the list of models
     return render_template('index.html', models=models)
 
-
 @app.route('/bet', methods=['POST'])
 def bet():
+    # Retrieve form data
     website = request.form.get('website')
     model = request.form.get('model')
     max_odds = request.form.get('max_odds', type=float)
@@ -42,28 +42,34 @@ def bet():
         logging.error("Invalid or missing Desired Profit")
         return render_template('error.html', message="Desired Profit should be a positive number.")
 
-    # Fetch gambling odds from the website
-    odds = get_gambling_odds("bet365")
+    # Fetch gambling odds from the website (assuming you have a method for that)
+    odds = get_gambling_odds(website)  # Update to use 'website' from form
     if odds is None:
         logging.error(f"Failed to fetch odds for website: {website}")
-        return render_template('error.html', message="Failed to fetch odds for the selected website.")
+        return render_template('error.html', message=f"Failed to fetch odds for the selected website: {website}.")
     
-    # Logging fetched odds for debugging purposes
     logging.debug("Gambling odds fetched successfully!")
     for odd in odds:
         logging.debug(odd)
 
-    # Predict the bet outcome using the predict_bet function
+    # Ensure the model file is correctly loaded
     try:
+        model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', f'{model}.pkl')
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"Model file '{model}.pkl' not found at {model_path}")
+        
+        logging.debug(f"Loading model from {model_path}")
         bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
-        logging.debug(f"Bet Prediction: {bet_prediction}")
     except Exception as e:
-        logging.error(f"Error during prediction: {e}")
-        return render_template('error.html', message="An error occurred during prediction.")
+        logging.error(f"Error during model loading or prediction: {e}")
+        return render_template('error.html', message=f"An error occurred: {e}")
+
+    logging.debug(f"Bet Prediction: {bet_prediction}")
 
     # Return the result to the user
     return render_template('result.html', website=website, model=model, max_odds=max_odds, 
                            desired_profit=desired_profit, odds=odds, bet_prediction=bet_prediction)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
