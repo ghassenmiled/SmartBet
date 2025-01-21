@@ -44,18 +44,22 @@ def preprocess_data(odds):
     # Handle missing values
     df.fillna(0, inplace=True)
 
-    # Validate required columns exist
-    required_columns = ['bet_coef1', 'bet_coef2', 'event_name']
+    # Validate required columns exist (you may want to add more columns depending on your training data)
+    required_columns = ['bet_coef1', 'bet_coef2', 'event_name', 'bookmaker1', 'bet_name1', 'bookmaker2', 'bet_name2']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
     
     logging.debug(f"Features available: {df.columns}")
     
+    # One-hot encode categorical features (if needed, adjust based on your model training)
+    df = pd.get_dummies(df, columns=['bookmaker1', 'bet_name1', 'bookmaker2', 'bet_name2'], drop_first=True)
+    
     # Feature scaling (only 'bet_coef1' and 'bet_coef2')
     scaler = StandardScaler()
     features = scaler.fit_transform(df[['bet_coef1', 'bet_coef2']])
-    
+
+    # Return the features and target (event_name as a placeholder)
     return features, df['event_name']
 
 def predict_bet(odds, model_name, max_odds, desired_profit):
