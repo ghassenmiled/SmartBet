@@ -36,6 +36,10 @@ def preprocess_data(odds):
 
     # Feature scaling (example: scale numerical columns)
     scaler = StandardScaler()
+    # Ensure the columns 'bet_coef1' and 'bet_coef2' exist
+    if 'bet_coef1' not in df.columns or 'bet_coef2' not in df.columns:
+        raise ValueError("Columns 'bet_coef1' and 'bet_coef2' are required for scaling.")
+        
     features = scaler.fit_transform(df[['bet_coef1', 'bet_coef2']])
     
     # Assuming 'event_name' is just a placeholder for actual target
@@ -56,8 +60,8 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     """
     # Mapping model names to file paths
     model_paths = {
-        'logistic_regression': '/app/models/logistic_regression_model.pkl',
-        'random_forest': '/app/models/random_forest_model.pkl',
+        'logistic_regression': 'models/logistic_regression_model.pkl',
+        'random_forest': 'models/random_forest_model.pkl',
         # Add more models as necessary
     }
 
