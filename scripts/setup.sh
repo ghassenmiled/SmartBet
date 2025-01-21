@@ -3,6 +3,14 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+# Colors for output
+RESET='\033[0m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+
 # Function to check if a command exists
 command_exists() {
     command -v "$1" &>/dev/null
@@ -10,95 +18,107 @@ command_exists() {
 
 # Function to prompt for the API key if not set
 get_api_key() {
-    echo "Please enter your Sports API key:"
+    echo -e "${CYAN}Please enter your Sports API key:${RESET}"
     read -r API_KEY
     if [ -z "$API_KEY" ]; then
-        echo "API key cannot be empty. Please try again."
+        echo -e "${RED}API key cannot be empty. Please try again.${RESET}"
         get_api_key
     else
         export API_KEY
-        echo "API key set successfully."
+        echo -e "${GREEN}API key set successfully.${RESET}"
     fi
 }
 
-# Check if Node.js and npm are installed, and install if missing
-echo "Step 1: Checking for Node.js and npm..."
+# Function to display a progress bar
+progress_bar() {
+    local step=$1
+    local duration=$2
+    echo -n "$step"
+    while [ $duration -gt 0 ]; do
+        echo -n "."
+        sleep 1
+        ((duration--))
+    done
+    echo ""
+}
+
+# Step 1: Check if Node.js and npm are installed, and install if missing
+echo -e "${BLUE}Step 1: Checking for Node.js and npm...${RESET}"
+progress_bar "Checking Node.js and npm" 3
 if ! command_exists nodejs || ! command_exists npm; then
-    echo "Node.js or npm not found. Installing Node.js and npm..."
-    sudo apt install -y nodejs npm || { echo "Failed to install Node.js and npm"; exit 1; }
+    echo -e "${YELLOW}Node.js or npm not found. Installing Node.js and npm...${RESET}"
+    sudo apt install -y nodejs npm || { echo -e "${RED}Failed to install Node.js and npm${RESET}"; exit 1; }
 else
-    echo "Node.js and npm are already installed."
-    # Check for Node.js version (example: requiring version 16 or higher)
+    echo -e "${GREEN}Node.js and npm are already installed.${RESET}"
     NODE_VERSION=$(node -v | cut -d '.' -f 1 | sed 's/[^0-9]*//g')
     if [ "$NODE_VERSION" -lt 16 ]; then
-        echo "Warning: Node.js version is lower than 16. Some features may not work. Consider upgrading Node.js."
+        echo -e "${YELLOW}Warning: Node.js version is lower than 16. Some features may not work.${RESET}"
     else
-        echo "Node.js version is sufficient."
+        echo -e "${GREEN}Node.js version is sufficient.${RESET}"
     fi
 fi
 
 # Step 2: Check if Python3 and pip3 are installed
-echo "Step 2: Checking for Python3 and pip3..."
+echo -e "${BLUE}Step 2: Checking for Python3 and pip3...${RESET}"
+progress_bar "Checking Python3 and pip3" 3
 if ! command_exists python3; then
-    echo "Error: Python3 is not installed. Please install Python3 before proceeding."
+    echo -e "${RED}Error: Python3 is not installed.${RESET}"
     exit 1
 fi
-
 if ! command_exists pip3; then
-    echo "Error: Pip3 is not installed. Please install Pip3 before proceeding."
+    echo -e "${RED}Error: Pip3 is not installed.${RESET}"
     exit 1
 fi
 
 # Step 3: Create a virtual environment if it doesn't exist
+echo -e "${BLUE}Step 3: Checking and creating virtual environment...${RESET}"
+progress_bar "Creating virtual environment" 3
 if [ ! -d "venv" ]; then
-    echo "Step 3: Creating a Python virtual environment..."
-    python3 -m venv venv || { echo "Failed to create virtual environment"; exit 1; }
-    echo "Virtual environment created in $(pwd)/venv"
+    python3 -m venv venv || { echo -e "${RED}Failed to create virtual environment${RESET}"; exit 1; }
+    echo -e "${GREEN}Virtual environment created.${RESET}"
 else
-    echo "Virtual environment already exists."
+    echo -e "${GREEN}Virtual environment already exists.${RESET}"
 fi
 
 # Step 4: Activate the virtual environment
-echo "Step 4: Activating the virtual environment..."
-source venv/bin/activate || { echo "Failed to activate virtual environment"; exit 1; }
-
-# Check if the virtual environment is activated
-if [[ "$VIRTUAL_ENV" == "" ]]; then
-    echo "Error: Virtual environment is not activated."
-    exit 1
-else
-    echo "Virtual environment is activated."
-fi
+echo -e "${BLUE}Step 4: Activating the virtual environment...${RESET}"
+progress_bar "Activating virtual environment" 3
+source venv/bin/activate || { echo -e "${RED}Failed to activate virtual environment${RESET}"; exit 1; }
+echo -e "${GREEN}Virtual environment activated.${RESET}"
 
 # Step 5: Install Python dependencies from requirements.txt if available
+echo -e "${BLUE}Step 5: Installing Python dependencies...${RESET}"
+progress_bar "Installing Python dependencies" 3
 if [ -f "requirements.txt" ]; then
-    echo "Step 5: Installing Python dependencies from requirements.txt..."
-    pip install --upgrade pip || { echo "Failed to upgrade pip"; exit 1; }
-    pip install -r requirements.txt || { echo "Failed to install Python dependencies"; exit 1; }
+    pip install --upgrade pip || { echo -e "${RED}Failed to upgrade pip${RESET}"; exit 1; }
+    pip install -r requirements.txt || { echo -e "${RED}Failed to install Python dependencies${RESET}"; exit 1; }
 else
-    echo "No requirements.txt found. Skipping Python dependency installation."
+    echo -e "${YELLOW}No requirements.txt found. Skipping dependency installation.${RESET}"
 fi
 
 # Step 6: Install or upgrade necessary dependencies like Flask, scikit-learn, pandas
-echo "Step 6: Installing or upgrading necessary dependencies..."
-pip install --upgrade flask==2.2.2 werkzeug==2.2.2 scikit-learn pandas numpy || { echo "Failed to install/upgrade necessary dependencies"; exit 1; }
+echo -e "${BLUE}Step 6: Installing/upgrading necessary dependencies...${RESET}"
+progress_bar "Installing dependencies" 3
+pip install --upgrade flask==2.2.2 werkzeug==2.2.2 scikit-learn pandas numpy || { echo -e "${RED}Failed to install/upgrade necessary dependencies${RESET}"; exit 1; }
 
 # Step 7: Check if the necessary environment variable (API_KEY) is set
-echo "Step 7: Checking if the API_KEY environment variable is set..."
+echo -e "${BLUE}Step 7: Checking if the API_KEY environment variable is set...${RESET}"
+progress_bar "Checking API_KEY" 2
 if [ -z "$API_KEY" ]; then
-    echo "Warning: API_KEY environment variable is not set. Please set it before running the app."
+    echo -e "${YELLOW}Warning: API_KEY environment variable is not set.${RESET}"
 else
-    echo "API_KEY environment variable is set."
+    echo -e "${GREEN}API_KEY environment variable is set.${RESET}"
 fi
 
 # Request and set the API key if not set
 get_api_key
 
 # Step 8: Check if Docker or Podman is installed
+echo -e "${BLUE}Step 8: Checking for Docker/Podman...${RESET}"
+progress_bar "Checking Docker/Podman" 3
 check_container_tools() {
-    echo "Step 8: Checking if Docker or Podman is installed..."
     if ! command_exists docker && ! command_exists podman; then
-        echo "Error: Neither Docker nor Podman is installed. Please install one before proceeding."
+        echo -e "${RED}Error: Neither Docker nor Podman is installed.${RESET}"
         exit 1
     fi
 }
@@ -106,107 +126,19 @@ check_container_tools() {
 check_container_tools
 
 # Step 9: Determine which container tool is available
+echo -e "${BLUE}Step 9: Determining available container tool...${RESET}"
+progress_bar "Determining container tool" 3
 if command_exists docker; then
     CONTAINER_TOOL="docker"
 elif command_exists podman; then
     CONTAINER_TOOL="podman"
 else
-    echo "Error: Neither Docker nor Podman found."
+    echo -e "${RED}Error: Neither Docker nor Podman found.${RESET}"
     exit 1
 fi
 
-# Functions to manage containers and images
-stop_containers() {
-    echo "Step 10: Stopping all running containers..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker ps -q | xargs -r docker stop
-    elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman ps -q | xargs -r podman stop
-    fi
-}
-
-remove_containers() {
-    echo "Step 11: Removing all containers..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker ps -a -q | xargs -r docker rm
-    elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman ps -a -q | xargs -r podman rm -f
-    fi
-}
-
-remove_docker_images() {
-    echo "Step 12: Removing all Docker images except Ubuntu images..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r docker rmi -f || echo "No Docker images to remove"
-    fi
-}
-
-remove_podman_images() {
-    echo "Step 13: Removing all Podman images except Ubuntu images..."
-    if [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman images --filter "dangling=false" --filter "reference!=ubuntu*" -q | xargs -r podman rmi -f || echo "No Podman images to remove"
-    fi
-}
-
-remove_docker_volumes() {
-    echo "Step 14: Cleaning up unused Docker volumes..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker volume prune -f || echo "No unused Docker volumes to remove"
-    fi
-}
-
-remove_docker_networks() {
-    echo "Step 15: Cleaning up unused Docker networks..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker network prune -f || echo "No unused Docker networks to remove"
-    fi
-}
-
-# Step 16: Build and run the app container
-build_and_run_app() {
-    echo "Step 16: Building and running the app container..."
-
-    APP_DIR=$(pwd)
-
-    echo "Navigating to app directory: $APP_DIR"
-    cd "$APP_DIR" || { echo "Failed to navigate to the app directory"; exit 1; }
-
-    echo "Checking for existing container..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        if docker ps -a --format '{{.Names}}' | grep -q "bet-app"; then
-            echo "Stopping existing container..."
-            docker stop bet-app || { echo "Failed to stop existing container"; exit 1; }
-            echo "Removing existing container..."
-            docker rm bet-app || { echo "Failed to remove existing container"; exit 1; }
-        fi
-    elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        if podman ps -a --format '{{.Names}}' | grep -q "bet-app"; then
-            echo "Stopping existing container..."
-            podman stop bet-app || { echo "Failed to stop existing container"; exit 1; }
-            echo "Removing existing container..."
-            podman rm bet-app || { echo "Failed to remove existing container"; exit 1; }
-        fi
-    fi
-
-    echo "Building container image..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker build --network=host -t my-bet-app . || { echo "Failed to build Docker image"; exit 1; }
-    elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman build --network=host -t my-bet-app . || { echo "Failed to build Podman image"; exit 1; }
-    fi
-
-    echo "Running container with API_KEY..."
-    if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker run --network=host -d -p 5000:5000 --name bet-app -e API_KEY="$API_KEY" my-bet-app || { echo "Failed to run Docker container"; exit 1; }
-    elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman run --network=host -d -p 5000:5000 --name bet-app -e API_KEY="$API_KEY" my-bet-app || { echo "Failed to run Podman container"; exit 1; }
-    fi
-}
-
-# Main script execution
-echo "Starting setup process..."
-
-# Clean up Docker and Podman containers, images, volumes, and networks
+# Step 10-15: Clean up Docker/Podman containers, images, volumes, and networks
+echo -e "${BLUE}Step 10: Cleaning up containers, images, and volumes...${RESET}"
 stop_containers
 remove_containers
 remove_docker_images
@@ -214,7 +146,9 @@ remove_podman_images
 remove_docker_volumes
 remove_docker_networks
 
-# Build and launch the app
+# Step 16: Build and run the app container
+echo -e "${BLUE}Step 16: Building and running the app container...${RESET}"
+progress_bar "Building and running app container" 3
 build_and_run_app
 
-echo "Setup complete!"
+echo -e "${GREEN}Setup complete!${RESET}"
