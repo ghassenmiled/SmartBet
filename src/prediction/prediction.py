@@ -62,10 +62,11 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     Returns:
         tuple: (Predictions, Processed Data)
     """
-    # Dynamic model path loading
+    # Dynamically build model path
     models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
     model_path = os.path.join(models_dir, f"{model_name}.pkl")
     
+    # Check if the model file exists
     if not os.path.exists(model_path):
         raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
@@ -75,7 +76,7 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     # Load the prediction model
     prediction_model = load_model(model_path)
 
-    # Make predictions (assumes binary classification with `predict_proba`)
+    # Make predictions (binary classification using `predict_proba`)
     predicted_probabilities = prediction_model.predict_proba(processed_data)[:, 1]
 
     # Calculate expected value (EV) for each bet
