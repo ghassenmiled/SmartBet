@@ -62,17 +62,13 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     Returns:
         tuple: (Predictions, Processed Data)
     """
-    # # Dynamically build model path
-    # models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
-    # model_path = os.path.join(models_dir, f"{model_name}.pkl")
-
-    # Check if the model file exists
-    # if not os.path.exists(model_path):
-    #     raise ValueError(f"Model '{model_name}' not found at {model_path}")
+    # Dynamically build model path
+    models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
+    model_path = os.path.join(models_dir, f"{model_name}")
     
-    model_path = 'models/random_forest_model.pkl' 
-
-
+    # Check if the model file exists
+    if not os.path.exists(model_path):
+        raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
     # Preprocess the data
     processed_data, match_outcomes = preprocess_data(odds)

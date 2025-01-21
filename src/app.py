@@ -54,9 +54,9 @@ def bet():
 
     # Ensure the model file is correctly loaded
     try:
-        model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', f'{model}.pkl')
+        model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', f'{model}')
         if not os.path.exists(model_path):
-            raise FileNotFoundError(f"Model file '{model}.pkl' not found at {model_path}")
+            raise FileNotFoundError(f"Model file '{model}' not found at {model_path}")
         
         logging.debug(f"Loading model from {model_path}")
         bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
