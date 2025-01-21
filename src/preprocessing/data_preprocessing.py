@@ -1,8 +1,6 @@
 import pandas as pd
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
 import logging
 
 # Set up logging for debugging
@@ -34,26 +32,22 @@ def preprocess_data(filepath):
         raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
 
     # Handle missing values more intelligently
-    # We use SimpleImputer to fill in missing values for numerical columns
     imputer = SimpleImputer(strategy='mean')  # Mean imputation for numerical columns
     data[['team_strength', 'recent_form', 'odds']] = imputer.fit_transform(data[['team_strength', 'recent_form', 'odds']])
     
     logging.debug("Missing values handled successfully.")
 
-    # Feature scaling: Scale numerical features
-    scaler = StandardScaler()
-    features = scaler.fit_transform(data[['team_strength', 'recent_form', 'odds']])
-    
-    logging.debug("Feature scaling applied to numerical columns.")
-
-    # Feature Engineering: Add ratio between team_strength and odds (optional, but may improve predictions)
+    # Feature engineering: Add ratio between team_strength and odds (optional, but may improve predictions)
     data['team_odds_ratio'] = data['team_strength'] / data['odds']
-    features = pd.DataFrame(features, columns=['team_strength', 'recent_form', 'odds'])
-    features['team_odds_ratio'] = data['team_odds_ratio']
     logging.debug("Feature engineering applied: Added 'team_odds_ratio'.")
 
-    # Optionally handle categorical features (for example: if you want to encode 'team' or 'location' columns)
-    # You can use OneHotEncoder if needed in the future. For now, we're assuming no categorical features in this dataset.
+    # Feature scaling: Scale numerical features
+    features = data[['team_strength', 'recent_form', 'odds', 'team_odds_ratio']]  # Include the engineered feature
+    scaler = StandardScaler()
+    scaled_features = scaler.fit_transform(features)
 
-    # Returning features and the target variable (match_outcome)
-    return features, data['match_outcome']
+    logging.debug("Feature scaling applied to numerical columns.")
+
+    # Returning scaled features and the target variable (match_outcome)
+    return scaled_features, data['match_outcome']
+
