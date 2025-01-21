@@ -7,46 +7,37 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f9f9f9;
             color: #333;
-        }
-        .container {
-            max-width: 600px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            padding: 50px;
         }
         h1 {
-            color: #D9534F;
+            color: #e74c3c;
             text-align: center;
         }
         p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
         }
         a {
-            display: block;
-            text-align: center;
-            font-size: 1.1em;
-            text-decoration: none;
-            color: #4CAF50;
+            display: inline-block;
             margin-top: 20px;
+            font-size: 16px;
+            color: #4CAF50;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
         }
         a:hover {
-            text-decoration: underline;
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Error Occurred</h1>
-        <p>{{ message }}</p>
-        <a href="/">Go back to the home page</a>
-    </div>
+    <h1>Something Went Wrong!</h1>
+    <p>{{ error_message }}</p>
+    <p><a href="/">Go Back</a></p>
 </body>
 </html>

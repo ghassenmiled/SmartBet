@@ -31,7 +31,12 @@ def preprocess_data(data):
     df['recent_form'] = df['winrate']  # Example: Assuming winrate as recent form
     df['odds'] = df['bK1_BetCoef']  # Assuming the odds are associated with bK1_BetCoef
     df['match_outcome'] = df['winrate']  # For example, use winrate as match outcome
-    
+
+    # Handling multiple bookmakers
+    bookmaker_columns = [col for col in df.columns if 'BetCoef' in col]
+    for bookmaker in bookmaker_columns:
+        df[f'{bookmaker}_processed'] = df[bookmaker]  # Process each bookmaker's bet coefficient
+
     required_columns = ['bK1_BetCoef', 'winrate']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
@@ -56,4 +61,4 @@ def preprocess_data(data):
     logging.debug("Feature scaling applied to numerical columns.")
 
     # Returning scaled features and the target variable (match_outcome)
-    return scaled_features, df['match_outcome']
+    return scaled_features, df['match_outcome'], df  # Returning the full DataFrame for better traceability

@@ -5,8 +5,8 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import make_classification
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV
 
 # Initialize logging
 logging.basicConfig(level=logging.DEBUG)
@@ -62,7 +62,7 @@ def train_and_save_model(model_type='logistic_regression', model_filepath=None):
         # Train the model
         model.fit(X_train, y_train)
 
-        # Evaluate the model with cross-validation (use train/test split for final evaluation)
+        # Cross-validation for model evaluation
         cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='accuracy')
         logging.info(f"Model trained successfully with cross-validation scores: {cv_scores}")
         logging.info(f"Mean CV Accuracy: {cv_scores.mean():.4f}")
@@ -70,7 +70,12 @@ def train_and_save_model(model_type='logistic_regression', model_filepath=None):
         # Final evaluation on the test set
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
+        f1 = f1_score(y_test, y_pred)
+        roc_auc = roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
+
         logging.info(f"Model accuracy on test set: {accuracy:.4f}")
+        logging.info(f"F1-Score on test set: {f1:.4f}")
+        logging.info(f"ROC-AUC on test set: {roc_auc:.4f}")
 
         # Save the trained model using the save_model utility function
         save_model(model, model_type)

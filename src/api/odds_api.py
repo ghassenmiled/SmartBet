@@ -2,8 +2,20 @@ import os
 import http.client
 import json
 import logging
+from typing import List, Dict, Optional
 
-def get_gambling_odds(website):
+# Constants
+API_HOSTS = {
+    "bet365": "bet365-api-inplay.p.rapidapi.com",
+    "other_website": "other-website-api.com"
+}
+
+API_ENDPOINTS = {
+    "bet365": "/bet365/get_betfair_forks",
+    "other_website": "/other_website/get_odds"
+}
+
+def get_gambling_odds(website: str) -> Optional[List[Dict[str, str]]]:
     """
     Fetch gambling odds from the specified website's API.
 
@@ -14,28 +26,23 @@ def get_gambling_odds(website):
         list: A list of dictionaries containing odds information, or None if an error occurs.
     """
     api_key = os.getenv('API_KEY')
+    
     if not api_key:
         logging.error("API key is missing. Please set the 'API_KEY' environment variable.")
         return None
 
-    # Configure connection and headers based on the website
-    if website == "bet365":
-        conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
-        headers = {
-            'x-rapidapi-key': api_key,
-            'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
-        }
-        endpoint = "/bet365/get_betfair_forks"
-    elif website == "other_website":  # Example for another website
-        conn = http.client.HTTPSConnection("other-website-api.com")
-        headers = {
-            'x-rapidapi-key': api_key,
-            'x-rapidapi-host': "other-website-api.com"
-        }
-        endpoint = "/other_website/get_odds"
-    else:
+    # Check if the website is supported
+    if website not in API_HOSTS:
         logging.error(f"Unsupported website: {website}")
         return None
+
+    # Configure connection and headers based on the website
+    conn = http.client.HTTPSConnection(API_HOSTS[website])
+    headers = {
+        'x-rapidapi-key': api_key,
+        'x-rapidapi-host': API_HOSTS[website]
+    }
+    endpoint = API_ENDPOINTS[website]
 
     try:
         # Make the API request
@@ -68,8 +75,11 @@ def get_gambling_odds(website):
     except json.JSONDecodeError as json_err:
         logging.error(f"JSON decoding error: {json_err}")
         return None
+    except http.client.HTTPException as http_err:
+        logging.error(f"HTTP error occurred: {http_err}")
+        return None
     except Exception as e:
-        logging.error(f"Error fetching gambling odds: {e}")
+        logging.error(f"Unexpected error fetching gambling odds: {e}")
         return None
     finally:
         conn.close()
