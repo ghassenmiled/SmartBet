@@ -12,7 +12,7 @@ def get_gambling_odds() :
         'x-rapidapi-key': "33a834c215msha6e80ead5dea978p1a94d9jsn2668968f7801",
         'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
     }
-    endpoint = "/bet365/get_betfair_forks"
+    endpoint = "/bet365/find_sport_events/soccer/real"
 
     try:
         # Make the API request
