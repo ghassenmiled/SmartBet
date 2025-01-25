@@ -8,19 +8,6 @@ command_exists() {
     command -v "$1" &>/dev/null
 }
 
-# Function to prompt for the API key if not set
-get_api_key() {
-    echo "Please enter your Sports API key:"
-    read -r API_KEY
-    if [ -z "$API_KEY" ]; then
-        echo "API key cannot be empty. Please try again."
-        get_api_key
-    else
-        export API_KEY
-        echo "API key set successfully."
-    fi
-}
-
 # Check if Node.js and npm are installed, and install if missing
 echo "Step 1: Checking for Node.js and npm..."
 if ! command_exists nodejs || ! command_exists npm; then
@@ -83,16 +70,6 @@ fi
 echo "Step 6: Installing or upgrading necessary dependencies..."
 pip install --upgrade flask==2.2.2 werkzeug==2.2.2 scikit-learn pandas numpy || { echo "Failed to install/upgrade necessary dependencies"; exit 1; }
 
-# Step 7: Check if the necessary environment variable (API_KEY) is set
-echo "Step 7: Checking if the API_KEY environment variable is set..."
-if [ -z "$API_KEY" ]; then
-    echo "Warning: API_KEY environment variable is not set. Please set it before running the app."
-else
-    echo "API_KEY environment variable is set."
-fi
-
-# Request and set the API key if not set
-get_api_key
 
 # Step 8: Check if Docker or Podman is installed
 check_container_tools() {
@@ -195,11 +172,11 @@ build_and_run_app() {
         podman build --network=host -t my-bet-app . || { echo "Failed to build Podman image"; exit 1; }
     fi
 
-    echo "Running container with API_KEY..."
+    echo "Running container ..."
     if [ "$CONTAINER_TOOL" = "docker" ]; then
-        docker run --network=host -d -p 5000:5000 --name bet-app -e API_KEY="$API_KEY" my-bet-app || { echo "Failed to run Docker container"; exit 1; }
+        docker run --network=host -d -p 5000:5000 --name bet-app my-bet-app || { echo "Failed to run Docker container"; exit 1; }
     elif [ "$CONTAINER_TOOL" = "podman" ]; then
-        podman run --network=host -d -p 5000:5000 --name bet-app -e API_KEY="$API_KEY" my-bet-app || { echo "Failed to run Podman container"; exit 1; }
+        podman run --network=host -d -p 5000:5000 --name bet-app my-bet-app || { echo "Failed to run Podman container"; exit 1; }
     fi
 }
 

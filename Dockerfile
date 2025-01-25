@@ -20,6 +20,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Install vim
+RUN apt update && apt install -y \
+    vim 
+
 # Set up the virtual environment and install the dependencies from requirements.txt
 RUN python3 -m venv /app/venv \
     && /app/venv/bin/pip install --upgrade pip \

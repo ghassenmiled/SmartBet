@@ -4,45 +4,15 @@ import json
 import logging
 from typing import List, Dict, Optional
 
-# Constants
-API_HOSTS = {
-    "bet365": "bet365-api-inplay.p.rapidapi.com",
-    "other_website": "other-website-api.com"
-}
-
-API_ENDPOINTS = {
-    "bet365": "/bet365/get_betfair_forks",
-    "other_website": "/other_website/get_odds"
-}
-
-def get_gambling_odds(website: str) -> Optional[List[Dict[str, str]]]:
-    """
-    Fetch gambling odds from the specified website's API.
-
-    Args:
-        website (str): The website name for which to fetch odds.
-
-    Returns:
-        list: A list of dictionaries containing odds information, or None if an error occurs.
-    """
-    api_key = os.getenv('API_KEY')
-    
-    if not api_key:
-        logging.error("API key is missing. Please set the 'API_KEY' environment variable.")
-        return None
-
-    # Check if the website is supported
-    if website not in API_HOSTS:
-        logging.error(f"Unsupported website: {website}")
-        return None
+def get_gambling_odds() :
 
     # Configure connection and headers based on the website
-    conn = http.client.HTTPSConnection(API_HOSTS[website])
+    conn = http.client.HTTPSConnection()
     headers = {
-        'x-rapidapi-key': api_key,
-        'x-rapidapi-host': API_HOSTS[website]
+        'x-rapidapi-key': "33a834c215msha6e80ead5dea978p1a94d9jsn2668968f7801",
+        'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
     }
-    endpoint = API_ENDPOINTS[website]
+    endpoint = "/bet365/get_betfair_forks"
 
     try:
         # Make the API request

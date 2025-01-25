@@ -43,10 +43,10 @@ def bet():
         return render_template('error.html', message="Desired Profit should be a positive number.")
 
     # Fetch gambling odds from the website (assuming you have a method for that)
-    odds = get_gambling_odds(website)  # Update to use 'website' from form
+    odds = get_gambling_odds()  # Update to use 'website' from form
     if odds is None:
-        logging.error(f"Failed to fetch odds for website: {website}")
-        return render_template('error.html', message=f"Failed to fetch odds for the selected website: {website}.")
+        logging.error(f"Failed to fetch odds for website")
+        return render_template('error.html', message=f"Failed to fetch odds for the selected website")
     
     logging.debug("Gambling odds fetched successfully!")
     for odd in odds:
