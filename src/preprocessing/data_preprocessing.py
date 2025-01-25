@@ -26,18 +26,14 @@ def preprocess_data(data):
     df = pd.DataFrame(data)
     logging.debug("Converted JSON to DataFrame.")
 
-    # Extract necessary columns and handle missing values
-    df['team_strength'] = df['bK1_BetCoef']  # Example: Assuming bK1_BetCoef is the team strength
-    df['recent_form'] = df['winrate']  # Example: Assuming winrate as recent form
-    df['odds'] = df['bK1_BetCoef']  # Assuming the odds are associated with bK1_BetCoef
-    df['match_outcome'] = df['winrate']  # For example, use winrate as match outcome
+    # Extract necessary columns from nested structures
+    df['team_strength'] = df['markets'].apply(lambda x: x.get('101', {}).get('outcomes', {}).get('101', {}).get('bookmakers', {}).get('bestPrice', {}).get('price', None))  # Example: Assuming 101 is the desired market
+    df['recent_form'] = df['markets'].apply(lambda x: x.get('104', {}).get('outcomes', {}).get('104', {}).get('bookmakers', {}).get('bestPrice', {}).get('price', None))  # Another market as example
+    df['odds'] = df['markets'].apply(lambda x: x.get('101', {}).get('outcomes', {}).get('101', {}).get('bookmakers', {}).get('bestPrice', {}).get('price', None))  # Assuming '101' is used for odds
+    df['match_outcome'] = df['markets'].apply(lambda x: x.get('101', {}).get('outcomes', {}).get('101', {}).get('outcomeName', None))  # Outcome name (1, X, 2)
 
-    # Handling multiple bookmakers
-    bookmaker_columns = [col for col in df.columns if 'BetCoef' in col]
-    for bookmaker in bookmaker_columns:
-        df[f'{bookmaker}_processed'] = df[bookmaker]  # Process each bookmaker's bet coefficient
-
-    required_columns = ['bK1_BetCoef', 'winrate']
+    # Handle missing values
+    required_columns = ['team_strength', 'recent_form', 'odds']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         logging.error(f"Missing required columns: {', '.join(missing_columns)}")

@@ -1,55 +1,81 @@
-import os
 import http.client
 import json
 import logging
 from typing import List, Dict, Optional
 
-def get_gambling_odds() :
+def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
+    """
+    Fetches gambling odds from the RapidAPI endpoint for soccer events, using the new data format.
+    
+    Returns:
+        List of odds data or None if an error occurs.
+    """
+    conn = http.client.HTTPSConnection("odds-api1.p.rapidapi.com")
 
-    # Configure connection and headers based on the website
-    conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
     headers = {
         'x-rapidapi-key': "33a834c215msha6e80ead5dea978p1a94d9jsn2668968f7801",
-        'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
+        'x-rapidapi-host': "odds-api1.p.rapidapi.com"
     }
-    endpoint = "/bet365/find_sport_events/soccer/real"
+
+    # Request for soccer event odds
+    conn.request("GET", "/odds?eventId=id1000001750850429&bookmakers=bet365%2Cpinnacle%2Cdraftkings%2Cbetsson%2Cladbrokes&oddsFormat=decimal&raw=false", headers=headers)
 
     try:
-        # Make the API request
-        conn.request("GET", endpoint, headers=headers)
         res = conn.getresponse()
         data = res.read()
 
-        # Decode and parse JSON data
+        # Decode the response data
         data = json.loads(data.decode("utf-8"))
 
-        if isinstance(data, list) and data:
-            # Process and extract relevant odds data
-            odds_list = [
-                {
-                    "event_name": event.get('bK1_EventName', 'N/A'),
-                    "bookmaker1": event.get('bookmaker1', 'N/A'),
-                    "bet_name1": event.get('bK1_BetName', 'N/A'),
-                    "bet_coef1": event.get('bK1_BetCoef', 'N/A'),
-                    "bookmaker2": event.get('bookmaker2', 'N/A'),
-                    "bet_name2": event.get('bK2_BetName', 'N/A'),
-                    "bet_coef2": event.get('bK2_BetCoef', 'N/A'),
+        if isinstance(data, dict):
+            odds_list = []
+
+            # Extract necessary information from the nested structure
+            event_info = {
+                "event_id": data.get("eventId", "N/A"),
+                "event_date": data.get("date", "N/A"),
+                "event_status": data.get("eventStatus", "N/A"),
+            }
+
+            # Extracting market data
+            for market_id, market_data in data.get("markets", {}).items():
+                market_info = {
+                    "market_name": market_data.get("marketName", "N/A"),
+                    "market_short_name": market_data.get("marketNameShort", "N/A"),
+                    "odds_type": market_data.get("oddsType", "N/A"),
                 }
-                for event in data
-            ]
+
+                # Extract outcomes and bookmaker odds
+                outcomes = market_data.get("outcomes", {})
+                for outcome_id, outcome_data in outcomes.items():
+                    odds_info = {
+                        "outcome_name": outcome_data.get("outcomeName", "N/A"),
+                        "best_price": outcome_data.get("bookmakers", {}).get("bestPrice", {}).get("price", "N/A"),
+                    }
+
+                    # Extract bookmaker odds and links
+                    for bookmaker, bookmaker_data in outcome_data.get("bookmakers", {}).items():
+                        bookmaker_info = {
+                            "bookmaker_name": bookmaker,
+                            "bookmaker_price": bookmaker_data.get("price", "N/A"),
+                            "bookmaker_link": bookmaker_data.get("eventPath", "N/A")
+                        }
+                        odds_info["bookmaker_details"] = bookmaker_info
+
+                    odds_list.append({**event_info, **market_info, **odds_info})
+
             return odds_list
         else:
             logging.error("Invalid or empty data structure received from the API.")
             return None
-
-    except json.JSONDecodeError as json_err:
-        logging.error(f"JSON decoding error: {json_err}")
-        return None
-    except http.client.HTTPException as http_err:
-        logging.error(f"HTTP error occurred: {http_err}")
-        return None
     except Exception as e:
-        logging.error(f"Unexpected error fetching gambling odds: {e}")
+        logging.error(f"Error fetching gambling odds: {e}")
         return None
     finally:
         conn.close()
+
+# Testing the function
+odds_data = get_gambling_odds()
+if odds_data:
+    for odds in odds_data:
+        print(odds)
