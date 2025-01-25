@@ -7,7 +7,7 @@ from typing import List, Dict, Optional
 def get_gambling_odds() :
 
     # Configure connection and headers based on the website
-    conn = http.client.HTTPSConnection()
+    conn = http.client.HTTPSConnection("bet365-api-inplay.p.rapidapi.com")
     headers = {
         'x-rapidapi-key': "33a834c215msha6e80ead5dea978p1a94d9jsn2668968f7801",
         'x-rapidapi-host': "bet365-api-inplay.p.rapidapi.com"
