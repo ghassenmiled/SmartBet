@@ -79,16 +79,18 @@ def preprocess_data(csv_file_path, add_target=False):
         if 'outcome_name' in df.columns:
             target = df['outcome_name']
             numeric_columns = [col for col in numeric_columns if col != 'outcome_name']
-        if 'encoded_outcome' not in df.columns:
-            raise ValueError("encoded_outcome column is missing from the data.")
-        if 'encoded_outcome' in df.columns:
-            target = df['encoded_outcome']
-            numeric_columns.remove('encoded_outcome')  # Exclude target from features
         else:
             logging.error("'outcome_name' column is missing. Cannot separate features and target.")
             return None
-    else:
-        target = None
+        
+        # Ensure encoded_outcome is present or create it
+        if 'encoded_outcome' not in df.columns:
+            logging.info("Creating 'encoded_outcome' from 'outcome_name' column.")
+            encoder = LabelEncoder()
+            df['encoded_outcome'] = encoder.fit_transform(df['outcome_name'])
+        
+        target = df['encoded_outcome']
+        numeric_columns.remove('encoded_outcome')  # Exclude target from features
 
     features = df[numeric_columns]
 
@@ -109,6 +111,7 @@ def preprocess_data(csv_file_path, add_target=False):
         return X_train_scaled, X_test_scaled, y_train_encoded, y_test_encoded
 
     return features
+
 
 
 
@@ -170,7 +173,7 @@ def check_required_columns(df):
     return True
 
 if __name__ == "__main__":
-    csv_file_path = "../../data/processed_data.csv"
+    csv_file_path = "../../data/raw/processed_combined_data.csv"
     
     try:
         # Load the data first
