@@ -62,6 +62,10 @@
             font-weight: bold;
             color: #e74c3c;
         }
+        .expected-profit {
+            color: #2ecc71;
+            font-weight: bold;
+        }
         @media (max-width: 600px) {
             table, th, td {
                 font-size: 1em;
@@ -91,6 +95,7 @@
                 <th>Bet</th>
                 <th>Odds</th>
                 <th>Prediction</th>
+                <th>Expected Profit</th>
             </tr>
         </thead>
         <tbody>
@@ -99,7 +104,8 @@
                 <td>{{ odd['event_name'] }}</td>
                 <td>{{ odd['bet_name1'] }} / {{ odd['bet_name2'] }}</td>
                 <td>{{ odd['bet_coef1'] }} / {{ odd['bet_coef2'] }}</td>
-                <td class="highlight">{{ bet_prediction }}</td>
+                <td class="highlight">{{ odd['bet_prediction'] }}</td>
+                <td class="expected-profit">{{ odd['expected_profit'] }}</td>
             </tr>
             {% endfor %}
         </tbody>

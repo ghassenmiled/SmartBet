@@ -1,4 +1,4 @@
-import joblib 
+import joblib
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import os
@@ -108,7 +108,7 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     """
     # Dynamically build model path
     models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
-    model_path = os.path.join(models_dir, f"{model_name}")
+    model_path = os.path.join(models_dir, f"{model_name}.pkl")
     if not os.path.exists(model_path):
         raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
@@ -135,7 +135,7 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
         bet_odd = processed_data[i].get("bookmaker_price", 0)
         ev = (probability * bet_odd) - (1 - probability)
         
-        # Append the bet if EV is positive and odds meet criteria
+        # Check if expected value is positive and meets the criteria
         if ev > 0 and bet_odd <= max_odds:
             bet_predictions.append({
                 "event_id": processed_data[i].get("event_id", "Unknown"),
@@ -144,10 +144,15 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
                 "bookmaker": processed_data[i].get("bookmaker_name", "Unknown"),
                 "bookmaker_link": processed_data[i].get("bookmaker_link", "Unknown"),
                 "bet_coef": bet_odd,
-                "ev": ev
+                "ev": ev,
+                "predicted_probability": probability,
+                "expected_profit": ev * bet_odd * desired_profit  # New calculation for expected profit
             })
     
     logging.debug(f"Predicted {len(bet_predictions)} potential bets with positive EV.")
+
+    # Sort bets by expected profit (in descending order)
+    bet_predictions.sort(key=lambda x: x['expected_profit'], reverse=True)
 
     return bet_predictions, processed_data
 
@@ -165,4 +170,4 @@ def preprocess_match_data(match_data):
         raise ValueError("Match data must be a list.")
     
     # Additional preprocessing steps can be added here if necessary
-    return match_data
+    return match_data  # As we already know all data will contain the required columns
