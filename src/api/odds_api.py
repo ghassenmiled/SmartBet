@@ -3,6 +3,9 @@ import json
 import logging
 from typing import List, Dict, Optional
 
+# Set up logging for better debugging
+logging.basicConfig(level=logging.DEBUG)
+
 def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
     """
     Fetches gambling odds from the RapidAPI endpoint for soccer events, using the new data format.
@@ -18,7 +21,9 @@ def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
     }
 
     # Request for soccer event odds
-    conn.request("GET", "/odds?eventId=id1000001750850429&bookmakers=bet365%2Cpinnacle%2Cdraftkings%2Cbetsson%2Cladbrokes&oddsFormat=decimal&raw=false", headers=headers)
+    request_url = "/odds?eventId=id1000001750850429&bookmakers=bet365%2Cpinnacle%2Cdraftkings%2Cbetsson%2Cladbrokes&oddsFormat=decimal&raw=false"
+    logging.debug(f"Requesting odds data from: {request_url}")
+    conn.request("GET", request_url, headers=headers)
 
     try:
         res = conn.getresponse()
@@ -26,6 +31,7 @@ def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
 
         # Decode the response data
         data = json.loads(data.decode("utf-8"))
+        logging.debug(f"Response data received: {data}")
 
         if isinstance(data, dict):
             odds_list = []
@@ -64,6 +70,7 @@ def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
 
                     odds_list.append({**event_info, **market_info, **odds_info})
 
+            logging.debug(f"Extracted {len(odds_list)} odds entries.")
             return odds_list
         else:
             logging.error("Invalid or empty data structure received from the API.")
@@ -75,7 +82,10 @@ def get_gambling_odds() -> Optional[List[Dict[str, str]]]:
         conn.close()
 
 # Testing the function
-odds_data = get_gambling_odds()
-if odds_data:
-    for odds in odds_data:
-        print(odds)
+if __name__ == "__main__":
+    odds_data = get_gambling_odds()
+    if odds_data:
+        for odds in odds_data:
+            print(odds)
+    else:
+        logging.error("No odds data available.")

@@ -8,41 +8,47 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-            background-color: #f0f0f5;
+            background: linear-gradient(to right, #f7f7f7, #e1e1e1);
             color: #333;
+            margin: 0;
+            min-height: 100vh;
         }
         h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 40px;
         }
         form {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             background-color: #fff;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
         label {
             font-weight: bold;
             display: block;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         input[type="number"], input[type="text"], select, button {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 12px;
+            margin: 10px 0 20px 0;
             border: 1px solid #ccc;
             border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
         }
         button {
             background-color: #4CAF50;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             border: none;
             cursor: pointer;
             border-radius: 6px;
+            padding: 15px;
+            transition: background-color 0.3s ease;
         }
         button:hover {
             background-color: #45a049;
@@ -50,7 +56,7 @@
         .error {
             color: red;
             font-size: 0.9em;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         .tooltip {
             position: relative;
@@ -61,7 +67,7 @@
         }
         .tooltip .tooltip-text {
             visibility: hidden;
-            width: 200px;
+            width: 220px;
             background-color: #555;
             color: #fff;
             text-align: center;
@@ -69,9 +75,9 @@
             padding: 5px;
             position: absolute;
             z-index: 1;
-            bottom: 125%; /* Position above the tooltip trigger */
+            bottom: 125%;
             left: 50%;
-            margin-left: -100px;
+            margin-left: -110px;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -79,49 +85,77 @@
             visibility: visible;
             opacity: 1;
         }
+        .success {
+            color: green;
+            font-size: 1em;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Welcome to the Gambling Game</h1>
     <form action="/bet" method="POST" id="betForm">
-        <label for="website">Website:
-            <span class="tooltip">?
-                <span class="tooltip-text">Select a site</span>
-            </span>
-        </label>
-        <input type="text" id="website" name="website" required>
-        
-        <label for="model">Select a model:</label>
-        <select id="model" name="model" required>
-            <option value="" disabled selected>Select a model</option>
-            {% for model in models %}
-                <option value="{{ model }}">{{ model }}</option>
-            {% endfor %}
-        </select>
-        <label for="max_odds">Maximum Desired Odd:
-            <span class="tooltip">?
-                <span class="tooltip-text">Maximum odds for the bet.</span>
-            </span>
-        </label>
-        <input type="number" id="max_odds" name="max_odds" step="0.01" min="0.01" required>
+        <div class="form-group">
+            <label for="website">Website:
+                <span class="tooltip">?
+                    <span class="tooltip-text">Select a site to place your bet</span>
+                </span>
+            </label>
+            <input type="text" id="website" name="website" required placeholder="Enter the website name">
+        </div>
 
-        <label for="bet_amount">Bet Amount (€):
-            <span class="tooltip">?
-                <span class="tooltip-text">The amount you want to bet.</span>
-            </span>
-        </label>
-        <input type="number" id="bet_amount" name="bet_amount" step="0.01" min="0.01" required>
+        <div class="form-group">
+            <label for="model">Select a model:</label>
+            <select id="model" name="model" required>
+                <option value="" disabled selected>Select a model</option>
+                {% for model in models %}
+                    <option value="{{ model }}">{{ model }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="desired_profit">Desired Profit (%):
-            <span class="tooltip">?
-                <span class="tooltip-text">Desired profit percentage (1-1000%).</span>
-            </span>
-        </label>
-        <input type="number" id="desired_profit" name="desired_profit" min="1" max="1000" required>
+        <div class="form-group">
+            <label for="max_odds">Maximum Desired Odd:
+                <span class="tooltip">?
+                    <span class="tooltip-text">Set the maximum odds you're willing to accept.</span>
+                </span>
+            </label>
+            <input type="number" id="max_odds" name="max_odds" step="0.01" min="0.01" required placeholder="Enter maximum odds">
+        </div>
+
+        <div class="form-group">
+            <label for="bet_amount">Bet Amount (€):
+                <span class="tooltip">?
+                    <span class="tooltip-text">Specify the amount of money to bet.</span>
+                </span>
+            </label>
+            <input type="number" id="bet_amount" name="bet_amount" step="0.01" min="0.01" required placeholder="Enter bet amount">
+        </div>
+
+        <div class="form-group">
+            <label for="desired_profit">Desired Profit (%):
+                <span class="tooltip">?
+                    <span class="tooltip-text">Enter your target profit percentage (1-1000%).</span>
+                </span>
+            </label>
+            <input type="number" id="desired_profit" name="desired_profit" min="1" max="1000" required placeholder="Desired profit percentage">
+        </div>
 
         <button type="submit">Submit</button>
     </form>
+
     <div class="error" id="errorMessage"></div>
+    <div class="success" id="successMessage"></div>
 
     <script>
         document.getElementById('betForm').addEventListener('submit', function(event) {
@@ -143,6 +177,10 @@
             if (errorMessage) {
                 event.preventDefault();
                 document.getElementById('errorMessage').textContent = errorMessage;
+                document.getElementById('successMessage').textContent = '';
+            } else {
+                document.getElementById('successMessage').textContent = 'Form submitted successfully!';
+                document.getElementById('errorMessage').textContent = '';
             }
         });
     </script>

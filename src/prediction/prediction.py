@@ -1,4 +1,4 @@
-import joblib
+import joblib 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 import os
@@ -44,23 +44,54 @@ def preprocess_data(odds):
     # Handle missing values
     df.fillna(0, inplace=True)
 
-    # Validate required columns exist (you may want to add more columns depending on your training data)
-    required_columns = ['bet_coef1', 'bet_coef2', 'event_name', 'bookmaker1', 'bet_name1', 'bookmaker2', 'bet_name2']
+    # Validate required columns exist
+    required_columns = ['best_price', 'event_id', 'market_name', 'bookmaker_details']
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
     
     logging.debug(f"Features available: {df.columns}")
     
-    # One-hot encode categorical features (if needed, adjust based on your model training)
-    df = pd.get_dummies(df, columns=['bookmaker1', 'bet_name1', 'bookmaker2', 'bet_name2'], drop_first=True)
+    # One-hot encode market_name and outcome_name (if needed, adjust based on your model training)
+    df = pd.get_dummies(df, columns=['market_name', 'outcome_name'], drop_first=True)
     
-    # Feature scaling (only 'bet_coef1' and 'bet_coef2')
+    # Feature scaling (only 'best_price')
     scaler = StandardScaler()
-    features = scaler.fit_transform(df[['bet_coef1', 'bet_coef2']])
+    features = scaler.fit_transform(df[['best_price']])
 
-    # Return the features and target (event_name as a placeholder)
-    return features, df['event_name']
+    # Return the features and target (event_id as a placeholder)
+    return features, df['event_id']
+
+def extract_outcome_data(odds):
+    """
+    Extract the relevant odds and bookmaker data from the new nested structure.
+
+    Args:
+        odds (dict): The odds data containing the bookmakers and outcomes.
+
+    Returns:
+        list: Processed list of extracted data for predictions.
+    """
+    processed_data = []
+
+    for event in odds:
+        event_data = {
+            "event_id": event.get("event_id", "Unknown"),
+            "event_date": event.get("event_date", "Unknown"),
+            "market_name": event.get("market_name", "Unknown"),
+            "outcome_name": event.get("outcome_name", "Unknown"),
+            "best_price": event.get("best_price", 0)
+        }
+        
+        # Extract bookmaker details (if available)
+        bookmaker = event.get("bookmaker_details", {})
+        event_data["bookmaker_name"] = bookmaker.get("bookmaker_name", "Unknown")
+        event_data["bookmaker_price"] = bookmaker.get("bookmaker_price", 0)
+        event_data["bookmaker_link"] = bookmaker.get("bookmaker_link", "N/A")
+        
+        processed_data.append(event_data)
+    
+    return processed_data
 
 def predict_bet(odds, model_name, max_odds, desired_profit):
     """
@@ -81,29 +112,37 @@ def predict_bet(odds, model_name, max_odds, desired_profit):
     if not os.path.exists(model_path):
         raise ValueError(f"Model '{model_name}' not found at {model_path}")
 
-    # Preprocess the data
-    logging.debug("Preprocessing odds data.")
-    processed_data, match_outcomes = preprocess_data(odds)
+    # Extract and preprocess the data
+    logging.debug("Extracting and preprocessing odds data.")
+    processed_data = extract_outcome_data(odds)
+
+    # Convert to DataFrame for further processing if needed
+    processed_df = pd.DataFrame(processed_data)
+    
+    # Preprocess for prediction (feature scaling)
+    features, match_outcomes = preprocess_data(processed_df.to_dict(orient='records'))
 
     # Load the prediction model
     prediction_model = load_model(model_path)
 
     # Make predictions (binary classification using `predict_proba`)
     logging.debug("Making predictions.")
-    predicted_probabilities = prediction_model.predict_proba(processed_data)[:, 1]
+    predicted_probabilities = prediction_model.predict_proba(features)[:, 1]
 
     # Calculate expected value (EV) for each bet
     bet_predictions = []
     for i, probability in enumerate(predicted_probabilities):
-        bet_odd = odds[i].get('bet_coef1', 0)
+        bet_odd = processed_data[i].get("bookmaker_price", 0)
         ev = (probability * bet_odd) - (1 - probability)
         
         # Append the bet if EV is positive and odds meet criteria
         if ev > 0 and bet_odd <= max_odds:
             bet_predictions.append({
-                "event_name": odds[i].get("event_name", "Unknown"),
-                "bookmaker": odds[i].get("bookmaker1", "Unknown"),
-                "bet_name": odds[i].get("bet_name1", "Unknown"),
+                "event_id": processed_data[i].get("event_id", "Unknown"),
+                "market_name": processed_data[i].get("market_name", "Unknown"),
+                "outcome_name": processed_data[i].get("outcome_name", "Unknown"),
+                "bookmaker": processed_data[i].get("bookmaker_name", "Unknown"),
+                "bookmaker_link": processed_data[i].get("bookmaker_link", "Unknown"),
                 "bet_coef": bet_odd,
                 "ev": ev
             })

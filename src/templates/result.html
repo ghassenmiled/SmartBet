@@ -8,51 +8,73 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f9f9f9;
+            background: linear-gradient(to right, #f7f7f7, #e1e1e1);
             color: #333;
+            min-height: 100vh;
         }
         h1 {
             text-align: center;
             color: #4CAF50;
+            margin-bottom: 30px;
         }
         h3 {
             margin-top: 30px;
             color: #333;
+            font-size: 1.2em;
         }
         ul {
             list-style-type: none;
             padding: 0;
+            font-size: 1em;
+            margin-bottom: 30px;
         }
         ul li {
-            margin: 5px 0;
-            font-weight: bold;
+            margin: 10px 0;
+        }
+        ul li strong {
+            color: #4CAF50;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
         table, th, td {
             border: 1px solid #ccc;
         }
         th, td {
             text-align: center;
-            padding: 10px;
+            padding: 12px;
+            font-size: 1.1em;
         }
         th {
             background-color: #4CAF50;
             color: white;
         }
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
         tr:hover {
-            background-color: #ddd;
+            background-color: #f1f1f1;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        @media (max-width: 600px) {
+            table, th, td {
+                font-size: 1em;
+            }
+            ul li {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Bet Result</h1>
+    
     <h3>Your Selections:</h3>
     <ul>
         <li><strong>Max Odds:</strong> {{ max_odd }}</li>
@@ -77,10 +99,14 @@
                 <td>{{ odd['event_name'] }}</td>
                 <td>{{ odd['bet_name1'] }} / {{ odd['bet_name2'] }}</td>
                 <td>{{ odd['bet_coef1'] }} / {{ odd['bet_coef2'] }}</td>
-                <td>{{ bet_prediction }}</td>
+                <td class="highlight">{{ bet_prediction }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        // Add any JavaScript logic if necessary
+    </script>
 </body>
 </html>

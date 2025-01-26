@@ -1,0 +1,3004 @@
+{
+    "betradarId": 50850429,
+    "bookmakers": {
+      "draftkings": {
+        "eventPath": "https://sportsbook.draftkings.com/event/31695049?marketGroupId=-1",
+        "name": "Draftkings"
+      },
+      "ladbrokes": {
+        "eventPath": "https://sports.ladbrokes.com/event/soccer/soccer/s/e/248596924/all-markets",
+        "name": "Ladbrokes"
+      },
+      "pinnacle": {
+        "eventPath": "https://www.pinnacle.com/en/e/e/Arsenal-Manchester-City/1603282551/#all",
+        "name": "Pinnacle Sports"
+      }
+    },
+    "date": "2025-02-02",
+    "eventId": "id100001750850429",
+    "eventStatus": "pre-game",
+    "markets": {
+      "101": {
+        "handicap": "0",
+        "marketName": "Full Time Result",
+        "marketNameShort": "1X2",
+        "oddsType": "3Way",
+        "outcomes": {
+          "101": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.1
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348760_1",
+                "price": 2.1
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806005",
+                "price": 2.05
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.08
+              }
+            },
+            "outcomeName": "1"
+          },
+          "102": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.6
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348760_2",
+                "price": 3.5
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806017",
+                "price": 3.6
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.6
+              }
+            },
+            "outcomeName": "X"
+          },
+          "103": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.42
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348760_3",
+                "price": 3.35
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806024",
+                "price": 3.3
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.42
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.569,
+          "draftkings": 94.303,
+          "ladbrokes": 93.579,
+          "pinnacle": 95.152
+        }
+      },
+      "104": {
+        "handicap": "0",
+        "marketName": "Both Teams To Score",
+        "marketNameShort": "Both Score",
+        "oddsType": "Totals",
+        "outcomes": {
+          "104": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.65
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216667#137032818_13L40253Q11714Q20",
+                "price": 1.588
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806095",
+                "price": 1.65
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "105": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.3
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216667#137032928_13L40253Q11715Q20",
+                "price": 2.3
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806079",
+                "price": 2.15
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 96.076,
+          "draftkings": 93.94,
+          "ladbrokes": 93.355
+        }
+      },
+      "106": {
+        "handicap": "0.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "106": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.04
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O50_1",
+                "price": 1.02
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806286",
+                "price": 1.04
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "107": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 13.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U50_3",
+                "price": 13.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806298",
+                "price": 10.0
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 96.296,
+          "draftkings": 94.579,
+          "ladbrokes": 94.203
+        }
+      },
+      "108": {
+        "handicap": "1.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "108": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.222
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O150_1",
+                "price": 1.222
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806131",
+                "price": 1.22
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "109": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.95
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U150_3",
+                "price": 3.95
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806133",
+                "price": 3.8
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 93.328,
+          "draftkings": 93.328,
+          "ladbrokes": 92.351
+        }
+      },
+      "1010": {
+        "handicap": "2.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "1010": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.781
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O250_1",
+                "price": 1.741
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806020",
+                "price": 1.73
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.781
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "1011": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.05
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U250_3",
+                "price": 2.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806025",
+                "price": 2.05
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.05
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.303,
+          "draftkings": 93.077,
+          "ladbrokes": 93.823,
+          "pinnacle": 95.303
+        }
+      },
+      "1012": {
+        "handicap": "3.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "1012": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.91
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O350_1",
+                "price": 2.9
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806204",
+                "price": 2.75
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.91
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "1013": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.406
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U350_3",
+                "price": 1.385
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806218",
+                "price": 1.4
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.406
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.797,
+          "draftkings": 93.734,
+          "ladbrokes": 92.771,
+          "pinnacle": 94.797
+        }
+      },
+      "1014": {
+        "handicap": "4.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "1014": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 5.25
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O450_1",
+                "price": 5.25
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806346",
+                "price": 4.8
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "1015": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.15
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U450_3",
+                "price": 1.143
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806351",
+                "price": 1.15
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.336,
+          "draftkings": 93.864,
+          "ladbrokes": 92.773
+        }
+      },
+      "1016": {
+        "handicap": "5.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "1016": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 10.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914O550_1",
+                "price": 10.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806373",
+                "price": 9.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "1017": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.05
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348914U550_3",
+                "price": 1.033
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806378",
+                "price": 1.05
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.023,
+          "draftkings": 93.628,
+          "ladbrokes": 94.03
+        }
+      },
+      "1018": {
+        "handicap": "6.5",
+        "marketName": "Over Under Full Time",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "1018": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 17.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805872",
+                "price": 17.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "1019": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.01
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805894",
+                "price": 1.01
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.336,
+          "ladbrokes": 95.336
+        }
+      },
+      "1052": {
+        "handicap": "-2.50",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1052": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 7.5
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917N250_1",
+                "price": 7.5
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1053": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.05
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917P250_3",
+                "price": 1.05
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.105,
+          "draftkings": 92.105
+        }
+      },
+      "1060": {
+        "handicap": "-1.50",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1060": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.75
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917N150_1",
+                "price": 3.75
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1061": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.211
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917P150_3",
+                "price": 1.211
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.539,
+          "draftkings": 91.539
+        }
+      },
+      "1062": {
+        "handicap": "-1.25",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1062": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.46
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.46
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1063": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.314
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.314
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.233,
+          "pinnacle": 95.233
+        }
+      },
+      "1064": {
+        "handicap": "-1.00",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1064": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.05
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.05
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1065": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.384
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.384
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.201,
+          "pinnacle": 95.201
+        }
+      },
+      "1066": {
+        "handicap": "-0.75",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1066": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.42
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760N75_1",
+                "price": 2.3
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.42
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1067": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.581
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760P75_3",
+                "price": 1.513
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.581
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.627,
+          "draftkings": 91.264,
+          "pinnacle": 95.627
+        }
+      },
+      "1068": {
+        "handicap": "-0.50",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1068": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.08
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760N50_1",
+                "price": 2.0
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.08
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1069": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.781
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760P50_3",
+                "price": 1.69
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.781
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.946,
+          "draftkings": 91.599,
+          "pinnacle": 95.946
+        }
+      },
+      "1070": {
+        "handicap": "-0.25",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1070": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.813
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760N25_1",
+                "price": 1.741
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.813
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1071": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.05
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760P25_3",
+                "price": 1.909
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.05
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 96.211,
+          "draftkings": 91.057,
+          "pinnacle": 96.211
+        }
+      },
+      "1072": {
+        "handicap": "0.00",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1072": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.537
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760P0_1",
+                "price": 1.513
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.537
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1073": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.55
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348760P0_3",
+                "price": 2.35
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.55
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.898,
+          "draftkings": 92.041,
+          "pinnacle": 95.898
+        }
+      },
+      "1074": {
+        "handicap": "0.25",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1074": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.408
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.408
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1075": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.98
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.98
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.621,
+          "pinnacle": 95.621
+        }
+      },
+      "1076": {
+        "handicap": "0.50",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1076": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.324
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917P50_1",
+                "price": 1.312
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.324
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1077": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.39
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917N50_3",
+                "price": 3.05
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.39
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.213,
+          "draftkings": 91.738,
+          "pinnacle": 95.213
+        }
+      },
+      "1078": {
+        "handicap": "0.75",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1078": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.222
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.222
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1079": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.34
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 4.34
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.352,
+          "pinnacle": 95.352
+        }
+      },
+      "1084": {
+        "handicap": "1.50",
+        "marketName": "Asian Handicap",
+        "marketNameShort": "Asian Handicap",
+        "oddsType": "Asian Handicap",
+        "outcomes": {
+          "1084": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.071
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917P150_1",
+                "price": 1.071
+              }
+            },
+            "outcomeName": "1"
+          },
+          "1085": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 6.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0HC78348917N150_3",
+                "price": 6.0
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 90.878,
+          "draftkings": 90.878
+        }
+      },
+      "10137": {
+        "handicap": "1:0",
+        "marketName": "European Handicap",
+        "marketNameShort": "Handicap",
+        "oddsType": "European Handicap",
+        "outcomes": {
+          "10137": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.3
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806319",
+                "price": 1.3
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10138": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 5.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806331",
+                "price": 5.0
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10139": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 6.5
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806339",
+                "price": 6.5
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 89.041,
+          "ladbrokes": 89.041
+        }
+      },
+      "10140": {
+        "handicap": "0:1",
+        "marketName": "European Handicap",
+        "marketNameShort": "Handicap",
+        "oddsType": "European Handicap",
+        "outcomes": {
+          "10140": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.6
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806234",
+                "price": 3.6
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10141": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.8
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806250",
+                "price": 3.8
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10142": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.73
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806263",
+                "price": 1.73
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 89.368,
+          "ladbrokes": 89.368
+        }
+      },
+      "10143": {
+        "handicap": "0:2",
+        "marketName": "European Handicap",
+        "marketNameShort": "Handicap",
+        "oddsType": "European Handicap",
+        "outcomes": {
+          "10143": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 7.5
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806379",
+                "price": 7.5
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10144": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 5.75
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806386",
+                "price": 5.75
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10145": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.25
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806372",
+                "price": 1.25
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 90.314,
+          "ladbrokes": 90.314
+        }
+      },
+      "10166": {
+        "handicap": "1.75",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10166": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.286
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.286
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10167": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.6
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.6
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.752,
+          "pinnacle": 94.752
+        }
+      },
+      "10168": {
+        "handicap": "2",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10168": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.357
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.357
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10169": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.15
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.15
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.842,
+          "pinnacle": 94.842
+        }
+      },
+      "10170": {
+        "handicap": "2.25",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10170": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.571
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760O225_1",
+                "price": 1.513
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.571
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10171": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.42
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760U225_3",
+                "price": 2.35
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.42
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.26,
+          "draftkings": 92.041,
+          "pinnacle": 95.26
+        }
+      },
+      "10172": {
+        "handicap": "2.75",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10172": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760O275_1",
+                "price": 1.87
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10173": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.847
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760U275_3",
+                "price": 1.769
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.847
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 96.023,
+          "draftkings": 90.905,
+          "pinnacle": 96.023
+        }
+      },
+      "10174": {
+        "handicap": "3",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10174": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.33
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760O300_1",
+                "price": 2.25
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.33
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10175": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.621
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348760U300_3",
+                "price": 1.556
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.621
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.594,
+          "draftkings": 91.986,
+          "pinnacle": 95.594
+        }
+      },
+      "10176": {
+        "handicap": "3.25",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10176": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.63
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 2.63
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10177": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.495
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.495
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.318,
+          "pinnacle": 95.318
+        }
+      },
+      "10178": {
+        "handicap": "3.75",
+        "marketName": "Asian Over Under",
+        "marketNameShort": "Asian Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10178": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.51
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 3.51
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10179": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.298
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2896545059|1603282551|0|x|",
+                "limit": 500.0,
+                "price": 1.298
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.758,
+          "pinnacle": 94.758
+        }
+      },
+      "10208": {
+        "handicap": "0",
+        "marketName": "First Half Result",
+        "marketNameShort": "1st Half 1X2",
+        "oddsType": "3Way",
+        "outcomes": {
+          "10208": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.71
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348772_1",
+                "price": 2.65
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805880",
+                "price": 2.62
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 2.71
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10209": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.28
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348772_2",
+                "price": 2.15
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805909",
+                "price": 2.15
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 2.28
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10210": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.03
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348772_3",
+                "price": 3.6
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805898",
+                "price": 3.7
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 4.03
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.72,
+          "draftkings": 89.266,
+          "ladbrokes": 89.52,
+          "pinnacle": 94.72
+        }
+      },
+      "10211": {
+        "handicap": "0",
+        "marketName": "Second Half Result",
+        "marketNameShort": "2nd Half 1X2",
+        "oddsType": "3Way",
+        "outcomes": {
+          "10211": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.35
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348923_1",
+                "price": 2.35
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805879",
+                "price": 2.3
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10212": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.6
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348923_2",
+                "price": 2.55
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805912",
+                "price": 2.6
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10213": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.4
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0ML78348923_3",
+                "price": 3.2
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805904",
+                "price": 3.4
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 90.558,
+          "draftkings": 88.481,
+          "ladbrokes": 89.806
+        }
+      },
+      "10214": {
+        "handicap": "0",
+        "marketName": "Draw No Bet",
+        "marketNameShort": "Draw No Bet",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10214": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.526
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216660#137032813_13L40253Q11Q20",
+                "price": 1.526
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806344",
+                "price": 1.5
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10215": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.4
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216660#137032933_13L40253Q12Q21",
+                "price": 2.4
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806354",
+                "price": 2.4
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 93.286,
+          "draftkings": 93.286,
+          "ladbrokes": 92.308
+        }
+      },
+      "10216": {
+        "handicap": "0",
+        "marketName": "First Goal Full Time",
+        "marketNameShort": "1st Goal",
+        "oddsType": "3Way",
+        "outcomes": {
+          "10216": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.75
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216668#137032819_13L40253Q1248Q21",
+                "price": 1.69
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806322",
+                "price": 1.75
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10217": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 13.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216668#137032927_14L40253Q10Q22",
+                "price": 13.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806335",
+                "price": 10.0
+              }
+            },
+            "outcomeName": "No Goal"
+          },
+          "10218": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.3
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216668#137032944_15L40253Q1240Q23",
+                "price": 2.1
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806340",
+                "price": 2.3
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.325,
+          "draftkings": 87.349,
+          "ladbrokes": 90.399
+        }
+      },
+      "10219": {
+        "handicap": "0",
+        "marketName": "Last Goal Full Time",
+        "marketNameShort": "Last Goal",
+        "oddsType": "3Way",
+        "outcomes": {
+          "10219": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.741
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216670#137032822_13L40253Q11Q21",
+                "price": 1.741
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10220": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 13.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216670#137032924_13L40253Q10Q22",
+                "price": 13.0
+              }
+            },
+            "outcomeName": "No Goal"
+          },
+          "10221": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.15
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216670#137032947_13L40253Q12Q23",
+                "price": 2.15
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 89.572,
+          "draftkings": 89.572
+        }
+      },
+      "10222": {
+        "handicap": "0",
+        "marketName": "Odd Even Full Time",
+        "marketNameShort": "Odd/Even",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10222": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.91
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216663#137032816_9L40253Q14Q21",
+                "price": 1.87
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805829",
+                "price": 1.91
+              }
+            },
+            "outcomeName": "Odd"
+          },
+          "10223": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.833
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216663#137032930_9L40253Q15Q22",
+                "price": 1.833
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805845",
+                "price": 1.83
+              }
+            },
+            "outcomeName": "Even"
+          }
+        },
+        "payouts": {
+          "bestPrice": 93.535,
+          "draftkings": 92.566,
+          "ladbrokes": 93.457
+        }
+      },
+      "10224": {
+        "handicap": "0.5",
+        "marketName": "Over Under Team 1",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10224": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.2
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915O50_1",
+                "price": 1.174
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806281",
+                "price": 1.2
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10225": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.4
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915U50_3",
+                "price": 4.4
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806292",
+                "price": 4.2
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.286,
+          "draftkings": 92.673,
+          "ladbrokes": 93.333
+        }
+      },
+      "10226": {
+        "handicap": "1.5",
+        "marketName": "Over Under Team 1",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10226": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.91
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915O150_1",
+                "price": 1.909
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806090",
+                "price": 1.91
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10227": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.8
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915U150_3",
+                "price": 1.769
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806108",
+                "price": 1.8
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.668,
+          "draftkings": 91.817,
+          "ladbrokes": 92.668
+        }
+      },
+      "10228": {
+        "handicap": "2.5",
+        "marketName": "Over Under Team 1",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10228": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915O250_1",
+                "price": 4.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805776",
+                "price": 3.8
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10229": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.25
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915U250_3",
+                "price": 1.2
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805782",
+                "price": 1.25
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 95.238,
+          "draftkings": 92.308,
+          "ladbrokes": 94.059
+        }
+      },
+      "10230": {
+        "handicap": "3.5",
+        "marketName": "Over Under Team 1",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10230": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 9.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915O350_1",
+                "price": 9.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806075",
+                "price": 8.5
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10231": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.06
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348915U350_3",
+                "price": 1.033
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806087",
+                "price": 1.06
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.831,
+          "draftkings": 92.664,
+          "ladbrokes": 94.247
+        }
+      },
+      "10240": {
+        "handicap": "0.5",
+        "marketName": "Over Under Team 2",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10240": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.35
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916O50_1",
+                "price": 1.312
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806034",
+                "price": 1.35
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10241": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.15
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916U50_3",
+                "price": 3.15
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806056",
+                "price": 3.0
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.5,
+          "draftkings": 92.622,
+          "ladbrokes": 93.103
+        }
+      },
+      "10242": {
+        "handicap": "1.5",
+        "marketName": "Over Under Team 2",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10242": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.6
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916O150_1",
+                "price": 2.55
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805875",
+                "price": 2.6
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10243": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.455
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916U150_3",
+                "price": 1.455
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805895",
+                "price": 1.44
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 93.292,
+          "draftkings": 92.64,
+          "ladbrokes": 92.673
+        }
+      },
+      "10244": {
+        "handicap": "2.5",
+        "marketName": "Over Under Team 2",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10244": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 6.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916O250_1",
+                "price": 6.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806032",
+                "price": 6.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10245": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.1
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0OU78348916U250_3",
+                "price": 1.091
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806049",
+                "price": 1.1
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.958,
+          "draftkings": 92.314,
+          "ladbrokes": 92.958
+        }
+      },
+      "10246": {
+        "handicap": "3.5",
+        "marketName": "Over Under Team 2",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10246": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 15.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806150",
+                "price": 15.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10247": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.01
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806163",
+                "price": 1.01
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.628,
+          "ladbrokes": 94.628
+        }
+      },
+      "10256": {
+        "handicap": "0.5",
+        "marketName": "Over Under First Half",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10256": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.361
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806249",
+                "price": 1.35
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 1.361
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10257": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.13
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806260",
+                "price": 3.0
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 3.13
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.855,
+          "ladbrokes": 93.103,
+          "pinnacle": 94.855
+        }
+      },
+      "10258": {
+        "handicap": "1.5",
+        "marketName": "Over Under First Half",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10258": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.75
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806030",
+                "price": 2.6
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 2.75
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10259": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.446
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806047",
+                "price": 1.44
+              },
+              "pinnacle": {
+                "bookmakerOutcomeId": "2897587082|1603282551|1|x|",
+                "limit": 100.0,
+                "price": 1.446
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.769,
+          "ladbrokes": 92.673,
+          "pinnacle": 94.769
+        }
+      },
+      "10260": {
+        "handicap": "2.5",
+        "marketName": "Over Under First Half",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10260": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 6.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806381",
+                "price": 6.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10261": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.1
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806374",
+                "price": 1.1
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.958,
+          "ladbrokes": 92.958
+        }
+      },
+      "10262": {
+        "handicap": "3.5",
+        "marketName": "Over Under First Half",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10262": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 15.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805944",
+                "price": 15.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10263": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.01
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805971",
+                "price": 1.01
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 94.628,
+          "ladbrokes": 94.628
+        }
+      },
+      "10264": {
+        "handicap": "4.5",
+        "marketName": "Over Under First Half",
+        "marketNameShort": "Total",
+        "oddsType": "Over/Under",
+        "outcomes": {
+          "10264": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 34.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806213",
+                "price": 34.0
+              }
+            },
+            "outcomeName": "Over"
+          },
+          "10265": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806223",
+                "price": 1.0
+              }
+            },
+            "outcomeName": "Under"
+          }
+        },
+        "payouts": {
+          "bestPrice": 97.143,
+          "ladbrokes": 97.143
+        }
+      },
+      "10284": {
+        "handicap": "0",
+        "marketName": "Team 1 To Score",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10284": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.18
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806092",
+                "price": 1.18
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10285": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.2
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806104",
+                "price": 4.2
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.119,
+          "ladbrokes": 92.119
+        }
+      },
+      "10286": {
+        "handicap": "0",
+        "marketName": "Team 2 To Score",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10286": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.33
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806183",
+                "price": 1.33
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10287": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.0
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806193",
+                "price": 3.0
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.148,
+          "ladbrokes": 92.148
+        }
+      },
+      "10288": {
+        "handicap": "0",
+        "marketName": "Team 1 To Score First Half",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10288": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.833
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216713#137032863_13L40253Q10Q211",
+                "price": 1.833
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10289": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.833
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216713#137032974_13L40253Q10Q210",
+                "price": 1.833
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.65,
+          "draftkings": 91.65
+        }
+      },
+      "10290": {
+        "handicap": "0",
+        "marketName": "Team 2 To Score First Half",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10290": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.2
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216713#137032887_14L40253Q10Q221",
+                "price": 2.2
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10291": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.588
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216713#137032991_14L40253Q10Q220",
+                "price": 1.588
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.228,
+          "draftkings": 92.228
+        }
+      },
+      "10292": {
+        "handicap": "0",
+        "marketName": "Team 1 To Score Second Half",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10292": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.526
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216691#137032841_13L40253Q10Q211",
+                "price": 1.526
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10293": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.3
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216691#137032963_13L40253Q10Q210",
+                "price": 2.3
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.735,
+          "draftkings": 91.735
+        }
+      },
+      "10294": {
+        "handicap": "0",
+        "marketName": "Team 2 To Score Second Half",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10294": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.741
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216691#137032904_14L40253Q10Q221",
+                "price": 1.741
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10295": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.909
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216691#137033000_14L40253Q10Q220",
+                "price": 1.909
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.057,
+          "draftkings": 91.057
+        }
+      },
+      "10296": {
+        "handicap": "0",
+        "marketName": "Team 1 To Score in Both Halves",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10296": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.95
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216690#137032840_13L40253Q10Q211",
+                "price": 2.95
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806323",
+                "price": 2.87
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10297": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.36
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216690#137032961_13L40253Q10Q210",
+                "price": 1.333
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806330",
+                "price": 1.36
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 93.086,
+          "draftkings": 91.813,
+          "ladbrokes": 92.274
+        }
+      },
+      "10298": {
+        "handicap": "0",
+        "marketName": "Team 2 To Score in Both Halves",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10298": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216690#137032906_14L40253Q10Q221",
+                "price": 3.9
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806362",
+                "price": 4.0
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10299": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.2
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216690#137033001_14L40253Q10Q220",
+                "price": 1.2
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806368",
+                "price": 1.2
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.308,
+          "draftkings": 91.765,
+          "ladbrokes": 92.308
+        }
+      },
+      "10300": {
+        "handicap": "0",
+        "marketName": "Both Teams To Score First Half",
+        "marketNameShort": "Both Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10300": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.1
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216698#137032848_13L40253Q11714Q20",
+                "price": 4.1
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10301": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.2
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216698#137032899_13L40253Q11715Q20",
+                "price": 1.2
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.83,
+          "draftkings": 92.83
+        }
+      },
+      "10302": {
+        "handicap": "0",
+        "marketName": "Both Teams To Score Second Half",
+        "marketNameShort": "Both Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10302": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.8
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216699#137032849_13L40253Q11714Q20",
+                "price": 2.8
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10303": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.385
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216699#137032898_13L40253Q11715Q20",
+                "price": 1.385
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.664,
+          "draftkings": 92.664
+        }
+      },
+      "10312": {
+        "handicap": "0",
+        "marketName": "Team 1 Clean Sheet",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10312": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 3.15
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216682#137032834_13L40253Q10Q211",
+                "price": 3.15
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10313": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.294
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216682#137032957_13L40253Q10Q210",
+                "price": 1.294
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.721,
+          "draftkings": 91.721
+        }
+      },
+      "10314": {
+        "handicap": "0",
+        "marketName": "Team 2 Clean Sheet",
+        "marketNameShort": "Score",
+        "oddsType": "Score",
+        "outcomes": {
+          "10314": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 4.5
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216682#137032912_14L40253Q10Q221",
+                "price": 4.5
+              }
+            },
+            "outcomeName": "Yes"
+          },
+          "10315": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.154
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216682#137033006_14L40253Q10Q220",
+                "price": 1.154
+              }
+            },
+            "outcomeName": "No"
+          }
+        },
+        "payouts": {
+          "bestPrice": 91.846,
+          "draftkings": 91.846
+        }
+      },
+      "10320": {
+        "handicap": "0",
+        "marketName": "Draw No Bet First Half",
+        "marketNameShort": "Draw No Bet",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10320": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.57
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805932",
+                "price": 1.57
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10321": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.25
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805957",
+                "price": 2.25
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.474,
+          "ladbrokes": 92.474
+        }
+      },
+      "10324": {
+        "handicap": "0",
+        "marketName": "Team 1 No Bet",
+        "marketNameShort": "Other",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10324": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.91
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805931",
+                "price": 1.91
+              }
+            },
+            "outcomeName": "X"
+          },
+          "10325": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.8
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667805951",
+                "price": 1.8
+              }
+            },
+            "outcomeName": "2"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.668,
+          "ladbrokes": 92.668
+        }
+      },
+      "10326": {
+        "handicap": "0",
+        "marketName": "Team 2 No Bet",
+        "marketNameShort": "Other",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10326": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.48
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806101",
+                "price": 1.48
+              }
+            },
+            "outcomeName": "1"
+          },
+          "10327": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.5
+              },
+              "ladbrokes": {
+                "bookmakerOutcomeId": "2667806081",
+                "price": 2.5
+              }
+            },
+            "outcomeName": "X"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.965,
+          "ladbrokes": 92.965
+        }
+      },
+      "10328": {
+        "handicap": "0",
+        "marketName": "Odd Even First Half",
+        "marketNameShort": "Odd/Even",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10328": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 2.0
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216709#137032860_13L40253Q10Q21",
+                "price": 2.0
+              }
+            },
+            "outcomeName": "Odd"
+          },
+          "10329": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.714
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216709#137032890_13L40253Q10Q22",
+                "price": 1.714
+              }
+            },
+            "outcomeName": "Even"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.299,
+          "draftkings": 92.299
+        }
+      },
+      "10330": {
+        "handicap": "0",
+        "marketName": "Odd Even Second Half",
+        "marketNameShort": "Odd/Even",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10330": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.909
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216710#137032861_13L40253Q10Q21",
+                "price": 1.909
+              }
+            },
+            "outcomeName": "Odd"
+          },
+          "10331": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.8
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216710#137032889_13L40253Q10Q22",
+                "price": 1.8
+              }
+            },
+            "outcomeName": "Even"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.645,
+          "draftkings": 92.645
+        }
+      },
+      "10332": {
+        "handicap": "0",
+        "marketName": "Team 1 Odd Even",
+        "marketNameShort": "Odd/Even",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10332": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.87
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216671#137032823_13L40253Q10Q211",
+                "price": 1.87
+              }
+            },
+            "outcomeName": "Odd"
+          },
+          "10333": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.833
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216671#137032948_13L40253Q10Q210",
+                "price": 1.833
+              }
+            },
+            "outcomeName": "Even"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.566,
+          "draftkings": 92.566
+        }
+      },
+      "10334": {
+        "handicap": "0",
+        "marketName": "Team 2 Odd Even",
+        "marketNameShort": "Odd/Even",
+        "oddsType": "2Way",
+        "outcomes": {
+          "10334": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.952
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216671#137032925_14L40253Q10Q221",
+                "price": 1.952
+              }
+            },
+            "outcomeName": "Odd"
+          },
+          "10335": {
+            "bookmakers": {
+              "bestPrice": {
+                "price": 1.741
+              },
+              "draftkings": {
+                "bookmakerOutcomeId": "0QA230216671#137033016_14L40253Q10Q220",
+                "price": 1.741
+              }
+            },
+            "outcomeName": "Even"
+          }
+        },
+        "payouts": {
+          "bestPrice": 92.024,
+          "draftkings": 92.024
+        }
+      }
+    },
+    "participant1": "Arsenal FC",
+    "participant2": "Manchester City",
+    "sportSlug": "soccer",
+    "startTime": 1738513800,
+    "time": "16:30:00",
+    "tournamentId": 17,
+    "updated": 1737909035
+  }
+  

@@ -16,6 +16,8 @@ def home():
     models_dir = os.path.join(os.getcwd(), 'src', 'prediction', 'models')
     models = [f for f in os.listdir(models_dir) if f.endswith('.pkl')]
 
+    logging.debug(f"Available models: {models}")
+
     # Render the HTML template with the list of models
     return render_template('index.html', models=models)
 
@@ -43,26 +45,32 @@ def bet():
         return render_template('error.html', message="Desired Profit should be a positive number.")
 
     # Fetch gambling odds from the website (assuming you have a method for that)
-    odds = get_gambling_odds()  # Update to use 'website' from form
-    if odds is None:
-        logging.error(f"Failed to fetch odds for website")
-        return render_template('error.html', message=f"Failed to fetch odds for the selected website")
-    
-    logging.debug("Gambling odds fetched successfully!")
-    for odd in odds:
-        logging.debug(odd)
+    try:
+        odds = get_gambling_odds()  # Update to use 'website' from form if necessary
+        if odds is None:
+            logging.error(f"Failed to fetch odds for website: {website}")
+            return render_template('error.html', message=f"Failed to fetch odds for the selected website")
+        
+        logging.debug("Gambling odds fetched successfully!")
+        for odd in odds:
+            logging.debug(odd)
+
+    except Exception as e:
+        logging.error(f"Error fetching gambling odds: {e}")
+        return render_template('error.html', message=f"Error fetching gambling odds: {e}")
 
     # Ensure the model file is correctly loaded
     try:
         model_path = os.path.join(os.getcwd(), 'src', 'prediction', 'models', f'{model}')
         if not os.path.exists(model_path):
-            raise FileNotFoundError(f"Model file '{model}' not found at {model_path}")
+            logging.error(f"Model file '{model}' not found at {model_path}")
+            return render_template('error.html', message=f"Model file '{model}' not found.")
         
         logging.debug(f"Loading model from {model_path}")
         bet_prediction, processed_data = predict_bet(odds, model, max_odds, desired_profit)
     except Exception as e:
         logging.error(f"Error during model loading or prediction: {e}")
-        return render_template('error.html', message=f"An error occurred: {e}")
+        return render_template('error.html', message=f"An error occurred during prediction: {e}")
 
     logging.debug(f"Bet Prediction: {bet_prediction}")
 
