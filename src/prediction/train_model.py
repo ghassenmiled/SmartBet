@@ -44,7 +44,6 @@ def preprocess_data(csv_file_path, add_target=False):
     logging.info(f"Loaded data with shape: {df.shape} and columns: {df.columns.tolist()}")
 
     # Handle missing values
-    # Fill missing values in specific columns
     if 'market_name' in df.columns:
         df['market_name'].fillna('Unknown', inplace=True)
     else:
@@ -73,22 +72,22 @@ def preprocess_data(csv_file_path, add_target=False):
     else:
         logging.warning("No categorical columns found for encoding.")
 
-    # Separate features and target
-    numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
-    if add_target:
+    # Check if 'encoded_outcome' is already present in the columns
+    if 'encoded_outcome' not in df.columns:
+        # Check if 'outcome_name' is present for encoding
         if 'outcome_name' in df.columns:
-            target = df['outcome_name']
-            numeric_columns = [col for col in numeric_columns if col != 'outcome_name']
-        else:
-            logging.error("'outcome_name' column is missing. Cannot separate features and target.")
-            return None
-        
-        # Ensure encoded_outcome is present or create it
-        if 'encoded_outcome' not in df.columns:
             logging.info("Creating 'encoded_outcome' from 'outcome_name' column.")
             encoder = LabelEncoder()
             df['encoded_outcome'] = encoder.fit_transform(df['outcome_name'])
-        
+        else:
+            logging.error("'outcome_name' column is missing. Cannot encode target.")
+            return None
+    else:
+        logging.info("'encoded_outcome' already exists.")
+
+    # Separate features and target
+    numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns.tolist()
+    if add_target:
         target = df['encoded_outcome']
         numeric_columns.remove('encoded_outcome')  # Exclude target from features
 
@@ -111,8 +110,6 @@ def preprocess_data(csv_file_path, add_target=False):
         return X_train_scaled, X_test_scaled, y_train_encoded, y_test_encoded
 
     return features
-
-
 
 
 def save_model(model, model_name, save_path=None):
